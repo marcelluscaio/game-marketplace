@@ -13,3 +13,50 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Player {
+  id        Int        @id @default(autoincrement())
+  nickname  String     @unique
+  gold      Int        @default(0)
+  inventory Inventory?
+  offers    Offer[]
+}
+
+model Inventory {
+  id       Int            @id @default(autoincrement())
+  player   Player         @relation(fields: [playerId], references: [id])
+  playerId Int            @unique
+  items    ItemInstance[]
+}
+
+model Item {
+  id        Int            @id @default(autoincrement())
+  name      String         @unique
+  instances ItemInstance[]
+  offers    Offer[]
+}
+
+model ItemInstance {
+  id          Int       @id @default(autoincrement())
+  quantity    Int
+  item        Item      @relation(fields: [itemId], references: [id])
+  itemId      Int
+  inventory   Inventory @relation(fields: [inventoryId], references: [id])
+  inventoryId Int
+}
+
+model Offer {
+  id           Int       @id @default(autoincrement())
+  offerType    OfferType
+  quantity     Int
+  pricePerUnit Int
+  endDate      DateTime
+  player       Player    @relation(fields: [playerId], references: [id])
+  playerId     Int
+  item         Item      @relation(fields: [itemId], references: [id])
+  itemId       Int
+}
+
+enum OfferType {
+  BUY
+  SELL
+}
