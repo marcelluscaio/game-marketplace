@@ -1,26 +1,32 @@
 {
-  "name": "game-marketplace",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "14.2.13",
-    "react": "^18",
-    "react-dom": "^18"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.13",
-    "eslint-config-prettier": "^9.1.0",
-    "prisma": "^5.19.1",
-    "typescript": "^5"
-  }
+	"name": "game-marketplace",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint"
+	},
+	"prisma": {
+		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+	},
+	"dependencies": {
+		"@prisma/client": "^5.19.1",
+		"dayjs": "^1.11.13",
+		"next": "14.2.13",
+		"react": "^18",
+		"react-dom": "^18",
+		"ts-node": "^10.9.2"
+	},
+	"devDependencies": {
+		"@types/node": "^20",
+		"@types/react": "^18",
+		"@types/react-dom": "^18",
+		"eslint": "^8",
+		"eslint-config-next": "14.2.13",
+		"eslint-config-prettier": "^9.1.0",
+		"prisma": "^5.19.1",
+		"typescript": "^5"
+	}
 }
