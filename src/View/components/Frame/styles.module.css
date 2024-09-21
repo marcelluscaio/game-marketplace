@@ -1,0 +1,14 @@
+.frameWrapper {
+	display: grid;
+	min-height: var(--full-height-fallback);
+	min-height: var(--full-height);
+	padding: var(--padding-block) var(--padding-inline);
+}
+
+.frame {
+	display: grid;
+	place-items: center;
+	padding: 2vh 2vw;
+	border: var(--border-width--large) solid var(--primary);
+	border-radius: 2.5vw;
+}

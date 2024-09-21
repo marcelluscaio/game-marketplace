@@ -1,7 +1,5 @@
-import { getAllPlayers } from "@/server/actions/getAllPlayers";
+import { Impersonation } from "@/View/screens/Impersonation";
 
 export default async function Home() {
-	const players = await getAllPlayers();
-	console.log(players);
-	return <div></div>;
+	return <Impersonation />;
 }
