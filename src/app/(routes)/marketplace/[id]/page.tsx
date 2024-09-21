@@ -6,8 +6,9 @@ type Props = {
 
 export default async function Marketplace({ params: { id } }: Props) {
 	return (
-		<div>
+		<main>
+			<h1 className={"visually-hidden"}>Marketplace</h1>
 			<div>{id}</div>
-		</div>
+		</main>
 	);
 }
