@@ -9,6 +9,7 @@ Tasks
 - [x] Seeds
 - [x] Get players from DataBase
   - [ ] Error handling
+  - [ ] Unit test
 - [ ] Add CSS reset
 - [ ] Create impersonation page
 - [ ] Get offers from data base
