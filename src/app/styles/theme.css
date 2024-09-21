@@ -18,6 +18,10 @@
 
 	--border-width--large: 3px;
 	--border-width--medium: 2px;
+
+	--border-radius--large: 2.5vw;
+	--border-radius--medium: calc(var(--border-radius--large) / 2);
+	--border-radius--small: calc(var(--border-radius--large) / 3);
 }
 
 /* @media (prefers-color-scheme: dark) {

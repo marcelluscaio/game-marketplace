@@ -1,0 +1,12 @@
+.container {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-template-rows: 1fr auto auto;
+	justify-self: stretch;
+	align-self: stretch;
+}
+
+.itemList {
+	border: var(--border-width--medium) solid var(--secondary700);
+	border-radius: var(--border-radius--medium);
+}

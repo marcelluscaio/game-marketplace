@@ -28,6 +28,7 @@ Tasks
 - docker compose up -d
 - npx prisma migrate
 - npx prisma generate
+- npm run dev
 
 ## Notes
 
