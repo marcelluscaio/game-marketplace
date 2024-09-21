@@ -7,7 +7,8 @@ Tasks
 - [x] Configure Prisma
 - [x] Create models
 - [x] Seeds
-- [ ] Get players from DataBase
+- [x] Get players from DataBase
+  - [ ] Error handling
 - [ ] Add CSS reset
 - [ ] Create impersonation page
 - [ ] Get offers from data base
