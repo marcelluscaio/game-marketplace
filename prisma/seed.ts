@@ -1,6 +1,5 @@
-import dayjs from "dayjs";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { dayjs } from "@/libs/dayjs";
+import { db } from "@/server/db/db";
 
 const PLAYERS = [
 	{ nickname: "MedievalRambo", gold: 250 },
@@ -27,14 +26,14 @@ const IN_ONE_WEEK = NOW.add(7, "week").toDate();
 async function seed() {
 	const items = ITEMS.map(
 		async (item) =>
-			await prisma.item.upsert({
+			await db.item.upsert({
 				where: { name: item.name },
 				update: {},
 				create: item,
 			})
 	);
 
-	await prisma.player.upsert({
+	await db.player.upsert({
 		where: { nickname: PLAYERS[0].nickname },
 		update: {},
 		create: {
@@ -93,7 +92,7 @@ async function seed() {
 	});
 
 	PLAYERS.forEach(async (player) =>
-		prisma.player.upsert({
+		db.player.upsert({
 			where: { nickname: player.nickname },
 			update: {},
 			create: player,
@@ -104,10 +103,10 @@ async function seed() {
 seed()
 	.then(async () => {
 		console.log("Database seeded");
-		await prisma.$disconnect();
+		await db.$disconnect();
 	})
 	.catch(async (e) => {
 		console.error(e);
-		await prisma.$disconnect();
+		await db.$disconnect();
 		process.exit(1);
 	});
