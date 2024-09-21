@@ -1,0 +1,28 @@
+:root {
+	--light-base: #fff4fc;
+	--dark-base: #333333;
+	--primary: #eaaab3;
+	--secondary700: #73a6db;
+	--secondary100: #ebf5fb;
+	--background: var(--light-base);
+	--foreground: var(--dark-base);
+
+	/* @link https://utopia.fyi/type/calculator?c=320,18,1.2,2000,42,1.25,0,0,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+	--fs-1: clamp(1.125rem, 0.8393rem + 1.4286vw, 2.625rem);
+
+	--full-height-fallback: 100vh;
+	--full-height: 100svh;
+
+	--padding-block: max(2.5vh, 1rem);
+	--padding-inline: max(2vw, 1.25rem);
+
+	--border-width--large: 3px;
+	--border-width--medium: 2px;
+}
+
+/* @media (prefers-color-scheme: dark) {
+	:root {
+		--background: var(--dark-base);
+		--foreground: var(--light-base);
+	}
+} */

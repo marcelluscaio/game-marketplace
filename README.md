@@ -10,11 +10,15 @@ Tasks
 - [x] Get players from DataBase
   - [ ] Error handling
   - [ ] Unit test
-- [ ] Add CSS reset
-- [ ] Create impersonation page
+- [x] Add CSS reset
+- [x] Set colors and fonts
+- [x] Create impersonation page UI
+  - [ ] Create custom select
+  - [ ] Create custom arrow with css
+- [ ] Impersonation action
+- [ ] Create Dashboard
 - [ ] Get offers from data base
 - [ ] Get Players Inventory (Items and quantity)
-- [ ] Create Dashboard
 - [ ] Create modal
 - [ ] Post offer
 
@@ -37,6 +41,16 @@ Components (View)
 Libs (Dayjs, outras bibliotecas)
 Helpers (Funcoes muito utilizadas)
 Model (schemas do zod e seus tipos exportados)
+
+Sugerir seta do select a direita
+https://ux.stackexchange.com/questions/17347/ok-for-dropdown-button-to-be-on-the-left
+
+Construir select
+https://blog.logrocket.com/creating-custom-select-dropdown-css/
+
+Usar o Schema PLayers para fazer parse
+
+Adicionar pagina de erro caso navegue para alguma pagina que nao existe
 
 Next com Prisma
 https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
