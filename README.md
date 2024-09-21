@@ -52,5 +52,7 @@ Usar o Schema PLayers para fazer parse
 
 Adicionar pagina de erro caso navegue para alguma pagina que nao existe
 
+Adicionar validacao com react hook form e zod em impersonation
+
 Next com Prisma
 https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
