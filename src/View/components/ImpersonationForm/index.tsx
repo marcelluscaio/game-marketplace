@@ -11,12 +11,12 @@ type Props = {
 };
 
 function ImpersonationForm({ players, formAction }: Props) {
-	const [player, setPlayer] = useState<FormData>(0);
+	const [player, setPlayer] = useState<FormData>("");
 
 	const onSubmit = async (formEvent: FormEvent<HTMLFormElement>) => {
 		formEvent.preventDefault();
 		//validation
-		if (player > 0) {
+		if (player.length > 0) {
 			formAction(player);
 		}
 	};
@@ -25,7 +25,7 @@ function ImpersonationForm({ players, formAction }: Props) {
 			<select
 				className={styles.select}
 				value={player}
-				onChange={(e) => setPlayer(Number(e.target.value))}
+				onChange={(e) => setPlayer(e.target.value)}
 			>
 				<option value={0}>-- Select Player --</option>
 				{players.map((player) => (

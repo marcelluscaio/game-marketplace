@@ -6,20 +6,13 @@ import { getPlayerData } from "@/server/actions/getPlayerData";
 
 type Props = {
 	params: {
-		id: number;
+		id: string;
 	};
 };
 
-const ITEMS = [
-	{ quantity: 3, name: "Item 1" },
-	{ quantity: 30, name: "Item 2" },
-	{ quantity: 300, name: "Item 3" },
-];
-
 export default async function Marketplace({ params: { id } }: Props) {
-	const { /* success,  */ player } = await getPlayerData(Number(id));
-	const { gold, nickname } = player;
-	console.log(player.inventory.items);
+	const { /* success,  */ player } = await getPlayerData(id);
+	const { gold, nickname, items } = player;
 	return (
 		<main className={styles.container}>
 			<h1 className="visually-hidden">Marketplace</h1>
@@ -27,9 +20,9 @@ export default async function Marketplace({ params: { id } }: Props) {
 			<section className={styles.itemSection}>
 				<h2 className={styles.title}>Items:</h2>
 				<ul className={styles.itemList}>
-					{ITEMS.map((item) => (
+					{items.map((item) => (
 						<li
-							key={item.name}
+							key={item.id}
 							className={styles.item}
 						>
 							{item.quantity} x {item.name}

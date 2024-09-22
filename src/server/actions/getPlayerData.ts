@@ -8,15 +8,13 @@ export async function getPlayerData(id: Player["id"]) {
 				id,
 			},
 			include: {
-				inventory: {
+				items: {
 					select: {
-						items: {
-							include: {
-								item: {
-									select: {
-										name: true,
-									},
-								},
+						id: true,
+						quantity: true,
+						item: {
+							select: {
+								name: true,
 							},
 						},
 					},
@@ -26,9 +24,17 @@ export async function getPlayerData(id: Player["id"]) {
 		if (player === null) {
 			throw new Error("Player not found the database");
 		}
-		return { success: true, player };
+		const flattenedItems = player.items.map((item) => {
+			const {
+				item: { name },
+				...rest
+			} = item;
+			return { ...rest, name };
+		});
+		const modifiedPlayer = { ...player, items: flattenedItems };
+		return { success: true, player: modifiedPlayer };
 	} catch (error) {
 		console.log(error);
-		return { success: false, player: { gold: 0, nickname: "Not found" } };
+		return { success: false, player: { gold: 0, nickname: "Not found", items: [] } };
 	}
 }
