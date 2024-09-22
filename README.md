@@ -17,9 +17,9 @@ Tasks
   - [ ] Create custom arrow with css
 - [x] Impersonation action
 - [x] Create Dashboard
-- [ ] Get Dashboard data from data base
-  - [ ] Player's Players Inventory (Items and quantity)
-  - [ ] Player's Gold
+- [x] Get Dashboard data from data base
+  - [x] Player's Players Inventory (Items and quantity)
+  - [x] Player's Gold
   - [ ] Get Offers for the first item on list
 - [ ] Make click on item change offers
 - [ ] Make Search work
