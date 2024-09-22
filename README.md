@@ -30,8 +30,8 @@ Tasks
 
 - npm install
 - docker compose up -d
-- npx prisma migrate
-- npx prisma generate
+- npx prisma db push
+- npx prisma migrate reset
 - npm run dev
 
 ## Notes

@@ -15,7 +15,13 @@ export async function getPlayerData(id: Player["id"]) {
 						item: {
 							select: {
 								name: true,
+								id: true,
 							},
+						},
+					},
+					orderBy: {
+						item: {
+							name: "asc",
 						},
 					},
 				},
@@ -26,11 +32,12 @@ export async function getPlayerData(id: Player["id"]) {
 		}
 		const flattenedItems = player.items.map((item) => {
 			const {
-				item: { name },
+				item: { name, id },
 				...rest
 			} = item;
-			return { ...rest, name };
+			return { ...rest, name, itemTypeId: id };
 		});
+
 		const modifiedPlayer = { ...player, items: flattenedItems };
 		return { success: true, player: modifiedPlayer };
 	} catch (error) {

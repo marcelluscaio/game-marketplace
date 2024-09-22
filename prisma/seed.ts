@@ -5,13 +5,17 @@ import { PrismaClient } from "@prisma/client";
 const db = new PrismaClient();
 
 const PLAYERS = [
-	{ nickname: "MedievalRambo", gold: 250 },
-	{ nickname: "Kali", gold: 2500 },
-	{ nickname: "DragonSlayer", gold: 2 },
-	{ nickname: "OrcDefender", gold: 123 },
-	{ nickname: "UnicornRider", gold: 860 },
-	{ nickname: "DayDreamer", gold: 458 },
+	{ nickname: "MedievalRambo" },
+	{ nickname: "Kali" },
+	{ nickname: "DragonSlayer" },
+	{ nickname: "OrcDefender" },
+	{ nickname: "UnicornRider" },
+	{ nickname: "DayDreamer" },
 ];
+
+function randomIntFromInterval({ min, max }: { min: number; max: number }) {
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 const ITEMS = [
 	{ name: "long sword" },
@@ -23,6 +27,15 @@ const ITEMS = [
 	{ name: "orange" },
 ];
 
+const ENRICHED_PLAYERS = PLAYERS.map((player, index) => ({
+	...player,
+	gold: randomIntFromInterval({ min: 50, max: 5000 }),
+	items: ITEMS.map((item, itemIndex) => ({
+		...item,
+		quantity: itemIndex === index ? 0 : randomIntFromInterval({ min: 1, max: 20 }),
+	})),
+}));
+
 const NOW = dayjs();
 const IN_ONE_WEEK = NOW.add(7, "week").toDate();
 
@@ -31,68 +44,138 @@ async function seed() {
 	db.itemInstance.deleteMany({});
 	db.player.deleteMany({});
 	db.item.deleteMany({});
-	await db.item.createMany({ data: ITEMS });
-	const items = await db.item.findMany();
 
-	await db.player.create({
-		data: {
-			...PLAYERS[0],
-			items: {
-				create: [
-					{
-						quantity: 3,
-						itemId: (await items[0]).id,
-					},
-					{
-						quantity: 10,
-						itemId: (await items[1]).id,
-					},
-					{
-						quantity: 17,
-						itemId: (await items[2]).id,
-					},
-					{
-						quantity: 200,
-						itemId: (await items[3]).id,
-					},
-					{
-						quantity: 1,
-						itemId: (await items[4]).id,
-					},
-					{
-						quantity: 8,
-						itemId: (await items[5]).id,
-					},
-				],
-			},
-			offers: {
-				create: [
-					{
-						offerType: "BUY",
-						itemId: (await items[2]).id,
-						quantity: 3,
-						pricePerUnit: 60,
-						endDate: IN_ONE_WEEK,
-					},
-					{
-						offerType: "SELL",
-						itemId: (await items[4]).id,
-						quantity: 2,
-						pricePerUnit: 600,
-						endDate: IN_ONE_WEEK,
-					},
-				],
-			},
-		},
+	await db.item.createMany({ data: ITEMS });
+
+	const createdPlayers = await db.player.createManyAndReturn({
+		data: ENRICHED_PLAYERS.map((player) => ({
+			nickname: player.nickname,
+			gold: player.gold,
+		})),
 	});
 
-	PLAYERS.forEach(async (player) =>
+	await Promise.all(
+		ENRICHED_PLAYERS.map(async (player) => {
+			const playerId = createdPlayers.find(
+				(createdPlayer) => createdPlayer.nickname === player.nickname
+			)?.id;
+
+			const playerItems = await Promise.all(
+				player.items.map(async (item) => {
+					const itemIdResult = await db.item.findUnique({
+						where: { name: item.name },
+						select: { id: true },
+					});
+
+					return {
+						quantity: item.quantity,
+						itemId: itemIdResult?.id,
+					};
+				})
+			);
+
+			if (playerId) {
+				await db.itemInstance.createMany({
+					data: playerItems
+						.filter((item) => item.itemId !== undefined)
+						.map((item) => ({
+							quantity: item.quantity,
+							itemId: item.itemId!,
+							ownerId: playerId,
+						})),
+				});
+			}
+		})
+	);
+
+	const playerWithItemId = await Promise.all(
+		ENRICHED_PLAYERS.map(async (player) => {
+			const items = await Promise.all(
+				player.items.map(async (item) => {
+					const itemId = await db.item.findUnique({
+						where: { name: item.name },
+						select: { id: true },
+					});
+					return { ...item, itemId };
+				})
+			);
+			return { ...player, items };
+		})
+	);
+
+	/* ENRICHED_PLAYERS.map((player) => ({
+			nickname: player.nickname,
+			gold: player.gold,
+			items: {
+				create: player.items.map(async (item) => ({
+					quantity: item.quantity,
+					itemId: await db.item.findUnique({
+						where: { name: item.name },
+						select: { id: true },
+					}),
+				})),
+			},
+		})), */
+
+	// await db.player.create({
+	// 	data: {
+	// 		...PLAYERS[0],
+	// 		items: {
+	// 			create: [
+	// 				{
+	// 					quantity: 3,
+	// 					itemId: (await items[0]).id,
+	// 				},
+	// 				{
+	// 					quantity: 10,
+	// 					itemId: (await items[1]).id,
+	// 				},
+	// 				{
+	// 					quantity: 17,
+	// 					itemId: (await items[2]).id,
+	// 				},
+	// 				{
+	// 					quantity: 200,
+	// 					itemId: (await items[3]).id,
+	// 				},
+	// 				{
+	// 					quantity: 1,
+	// 					itemId: (await items[4]).id,
+	// 				},
+	// 				{
+	// 					quantity: 8,
+	// 					itemId: (await items[5]).id,
+	// 				},
+	// 			],
+	// 		},
+	// 		offers: {
+	// 			create: [
+	// 				{
+	// 					offerType: "BUY",
+	// 					itemId: (await items[2]).id,
+	// 					quantity: 3,
+	// 					pricePerUnit: 60,
+	// 					endDate: IN_ONE_WEEK,
+	// 				},
+	// 				{
+	// 					offerType: "SELL",
+	// 					itemId: (await items[4]).id,
+	// 					quantity: 2,
+	// 					pricePerUnit: 600,
+	// 					endDate: IN_ONE_WEEK,
+	// 				},
+	// 			],
+	// 		},
+	// 	},
+	// });
+
+	/* PLAYERS.forEach(async (player) =>
 		db.player.upsert({
 			where: { nickname: player.nickname },
 			update: {},
 			create: player,
 		})
-	);
+	); */
 }
 
 seed()
