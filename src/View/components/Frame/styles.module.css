@@ -8,7 +8,7 @@
 .frame {
 	display: grid;
 	place-items: center;
-	padding: 2vh 2vw;
+	padding: var(--padding-block) var(--padding-inline);
 	border: var(--border-width--large) solid var(--primary);
-	border-radius: 2.5vw;
+	border-radius: var(--border-radius--large);
 }

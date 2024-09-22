@@ -4,6 +4,8 @@
 	--primary: #eaaab3;
 	--secondary700: #73a6db;
 	--secondary100: #ebf5fb;
+	--tertiary: #76db73;
+	--quaternary: #d9db73;
 	--background: var(--light-base);
 	--foreground: var(--dark-base);
 
@@ -15,9 +17,15 @@
 
 	--padding-block: max(2.5vh, 1rem);
 	--padding-inline: max(2vw, 1.25rem);
+	--padding-block--small: calc(max(2.5vh, 1rem) / 3);
+	--padding-inline--small: calc(max(2vw, 1.25rem) / 3);
 
 	--border-width--large: 3px;
 	--border-width--medium: 2px;
+
+	--border-radius--large: 2.5vw;
+	--border-radius--medium: calc(var(--border-radius--large) / 2);
+	--border-radius--small: calc(var(--border-radius--large) / 3);
 }
 
 /* @media (prefers-color-scheme: dark) {

@@ -1,7 +1,7 @@
 .button {
 	padding: 0.065em 0.5em;
 	border: var(--border-width--medium) solid var(--secondary700);
-	border-radius: 0.25em;
+	border-radius: var(--border-radius--small);
 
 	background-color: var(--secondary100);
 
