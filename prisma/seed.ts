@@ -1,5 +1,8 @@
-import { dayjs } from "@/libs/dayjs";
-import { db } from "@/server/db/db";
+/* import { dayjs } from "@/libs/dayjs"; */
+/* import { db } from "@/server/db/db"; */
+import dayjs from "dayjs";
+import { PrismaClient } from "@prisma/client";
+const db = new PrismaClient();
 
 const PLAYERS = [
 	{ nickname: "MedievalRambo", gold: 250 },
@@ -24,51 +27,43 @@ const NOW = dayjs();
 const IN_ONE_WEEK = NOW.add(7, "week").toDate();
 
 async function seed() {
-	const items = ITEMS.map(
-		async (item) =>
-			await db.item.upsert({
-				where: { name: item.name },
-				update: {},
-				create: item,
-			})
-	);
+	db.offer.deleteMany({});
+	db.itemInstance.deleteMany({});
+	db.player.deleteMany({});
+	db.item.deleteMany({});
+	await db.item.createMany({ data: ITEMS });
+	const items = await db.item.findMany();
 
-	await db.player.upsert({
-		where: { nickname: PLAYERS[0].nickname },
-		update: {},
-		create: {
+	await db.player.create({
+		data: {
 			...PLAYERS[0],
-			inventory: {
-				create: {
-					items: {
-						create: [
-							{
-								quantity: 3,
-								itemId: (await items[0]).id,
-							},
-							{
-								quantity: 10,
-								itemId: (await items[1]).id,
-							},
-							{
-								quantity: 17,
-								itemId: (await items[2]).id,
-							},
-							{
-								quantity: 200,
-								itemId: (await items[3]).id,
-							},
-							{
-								quantity: 1,
-								itemId: (await items[4]).id,
-							},
-							{
-								quantity: 8,
-								itemId: (await items[5]).id,
-							},
-						],
+			items: {
+				create: [
+					{
+						quantity: 3,
+						itemId: (await items[0]).id,
 					},
-				},
+					{
+						quantity: 10,
+						itemId: (await items[1]).id,
+					},
+					{
+						quantity: 17,
+						itemId: (await items[2]).id,
+					},
+					{
+						quantity: 200,
+						itemId: (await items[3]).id,
+					},
+					{
+						quantity: 1,
+						itemId: (await items[4]).id,
+					},
+					{
+						quantity: 8,
+						itemId: (await items[5]).id,
+					},
+				],
 			},
 			offers: {
 				create: [
