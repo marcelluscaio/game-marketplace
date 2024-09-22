@@ -61,5 +61,7 @@ Adicionar validacao com react hook form e zod em impersonation
 
 Id do jogador deve ser uuid
 
+Fazer button polimorfico que possa ser Link tmbm
+
 Next com Prisma
 https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices

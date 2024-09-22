@@ -2,6 +2,7 @@ import buttonStyles from "@/View/components/Button/styles.module.css";
 import styles from "./styles.module.css";
 import Link from "next/link";
 import { Button } from "@/View/components/Button";
+import { getPlayerData } from "@/server/actions/getPlayerData";
 
 type Props = {
 	params: {
@@ -15,14 +16,16 @@ const ITEMS = [
 	{ quantity: 300, name: "Item 3" },
 ];
 
-const GOLD = 23456;
-
 export default async function Marketplace({ params: { id } }: Props) {
+	const { /* success,  */ player } = await getPlayerData(Number(id));
+	const { gold, nickname } = player;
+	console.log(player.inventory.items);
 	return (
 		<main className={styles.container}>
 			<h1 className="visually-hidden">Marketplace</h1>
+			<p className={styles.greeting}>{`Hello, ${nickname}`}</p>
 			<section className={styles.itemSection}>
-				<h2 className={styles.title}>Items: {id}</h2>
+				<h2 className={styles.title}>Items:</h2>
 				<ul className={styles.itemList}>
 					{ITEMS.map((item) => (
 						<li
@@ -74,7 +77,7 @@ export default async function Marketplace({ params: { id } }: Props) {
 			</section>
 			<section className={styles.footer}>
 				<h2 className="visually-hidden">Footer</h2>
-				<p>Gold: {GOLD}</p>
+				<p>Gold: {gold}</p>
 				<div className={styles.buttonContainer}>
 					<Link
 						href="/"
