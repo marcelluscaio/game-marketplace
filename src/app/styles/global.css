@@ -4,6 +4,18 @@ body {
 	color: var(--foreground);
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+div {
+	font-weight: 700;
+}
+
 .visually-hidden:not(:focus):not(:active) {
 	position: absolute;
 	width: 1px;

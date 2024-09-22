@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nanum_Brush_Script } from "next/font/google";
+import { Gloria_Hallelujah } from "next/font/google";
 import "./styles/reset.css";
 import "./styles/theme.css";
 import "./styles/global.css";
@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 	description: "Buy and sell items from your favorite game",
 };
 
-const nanumBrushScript = Nanum_Brush_Script({
+const gloriaFont = Gloria_Hallelujah({
 	weight: "400",
 	subsets: ["latin"],
 	display: "swap",
@@ -23,7 +23,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={nanumBrushScript.className}>
+			<body className={gloriaFont.className}>
 				<Frame>{children}</Frame>
 			</body>
 		</html>

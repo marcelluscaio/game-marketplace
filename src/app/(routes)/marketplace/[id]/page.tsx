@@ -21,11 +21,14 @@ export default async function Marketplace({ params: { id } }: Props) {
 	return (
 		<main className={styles.container}>
 			<h1 className="visually-hidden">Marketplace</h1>
-			<section>
-				<h2>Items: {id}</h2>
+			<section className={styles.itemSection}>
+				<h2 className={styles.title}>Items: {id}</h2>
 				<ul className={styles.itemList}>
 					{ITEMS.map((item) => (
-						<li key={item.name}>
+						<li
+							key={item.name}
+							className={styles.item}
+						>
 							{item.quantity} x {item.name}
 						</li>
 					))}
@@ -33,28 +36,54 @@ export default async function Marketplace({ params: { id } }: Props) {
 			</section>
 			<section>
 				<div>
-					<h2>Sell Offers:</h2>
+					<h2 className={styles.title}>Sell Offers:</h2>
+					<table>
+						<tr>
+							<th>Name</th>
+							<th>Amount</th>
+							<th>Price Per Unit</th>
+							<th>Total Price</th>
+							<th>Ends At</th>
+						</tr>
+					</table>
 				</div>
 				<div>
-					<h2>Buy Offers:</h2>
+					<h2 className={styles.title}>Buy Offers:</h2>
+					<table>
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Amount</th>
+								<th>Price Per Unit</th>
+								<th>Total Price</th>
+								<th>Ends At</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
 				</div>
 			</section>
-			<section>
-				<h2>Search</h2>
+			<section className={styles.searchSection}>
+				<h2 className={styles.title}>Search:</h2>
 				<form>
-					<input type="text" />
+					<input
+						className={styles.search}
+						type="text"
+					/>
 				</form>
 			</section>
-			<section>
+			<section className={styles.footer}>
 				<h2 className="visually-hidden">Footer</h2>
 				<p>Gold: {GOLD}</p>
-				<Link
-					href="/"
-					className={buttonStyles.button}
-				>
-					Switch Player
-				</Link>
-				<Button text="Create Offer" />
+				<div className={styles.buttonContainer}>
+					<Link
+						href="/"
+						className={buttonStyles.button}
+					>
+						Switch Player
+					</Link>
+					<Button text="Create Offer" />
+				</div>
 			</section>
 		</main>
 	);
