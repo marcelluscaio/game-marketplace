@@ -15,11 +15,15 @@ Tasks
 - [x] Create impersonation page UI
   - [ ] Create custom select
   - [ ] Create custom arrow with css
-- [ ] Impersonation action
-- [ ] Create Dashboard
-- [ ] Get offers from data base
-- [ ] Get Players Inventory (Items and quantity)
-- [ ] Create modal
+- [x] Impersonation action
+- [x] Create Dashboard
+- [ ] Get Dashboard data from data base
+  - [ ] Player's Players Inventory (Items and quantity)
+  - [ ] Player's Gold
+  - [ ] Get Offers for the first item on list
+- [ ] Make click on item change offers
+- [ ] Make Search work
+- [ ] Create modal UI
 - [ ] Post offer
 
 ## How to run
@@ -54,6 +58,8 @@ Usar o Schema PLayers para fazer parse
 Adicionar pagina de erro caso navegue para alguma pagina que nao existe
 
 Adicionar validacao com react hook form e zod em impersonation
+
+Id do jogador deve ser uuid
 
 Next com Prisma
 https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
