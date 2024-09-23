@@ -14,7 +14,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 	const context = useContext(DashboardContext);
 
 	if (!context) {
-		throw new Error("ItemList must be used within a DashboardContext Provider");
+		throw new Error("Component must be used within a DashboardContext Provider");
 	}
 	const { selectedItem } = context;
 
