@@ -36,15 +36,6 @@
 	border-radius: var(--border-radius--medium);
 } */
 
-.searchSection {
-	grid-column: span 2;
-}
-
-.search {
-	border: var(--border-width--medium) solid var(--secondary700);
-	border-radius: var(--border-radius--medium);
-}
-
 .footer {
 	display: flex;
 	justify-content: space-between;

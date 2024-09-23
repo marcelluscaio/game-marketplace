@@ -1,0 +1,12 @@
+.title {
+	margin-bottom: 0.25em;
+}
+
+.searchSection {
+	grid-column: span 2;
+}
+
+.search {
+	border: var(--border-width--medium) solid var(--secondary700);
+	border-radius: var(--border-radius--medium);
+}

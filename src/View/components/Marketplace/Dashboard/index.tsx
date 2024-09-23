@@ -1,25 +1,29 @@
 "use client";
 import { createContext, PropsWithChildren, useState } from "react";
 
-type DashboardContextType = {
-	selectedItem:
-		| {
-				id: number;
-				name: string;
-				itemTypeId: number;
-		  }
-		| undefined;
-	setSelectedItem: (item: DashboardContextType["selectedItem"]) => void;
+type SelectedItem = {
+	id: number;
+	name: string;
+	itemTypeId: number;
 };
-const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
+type DashboardContextType = {
+	selectedItem: SelectedItem | undefined;
+	setSelectedItem: (item: DashboardContextType["selectedItem"]) => void;
+	searchTerm: string;
+	setSearchTerm: (term: string) => void;
+};
 type Props = {} & PropsWithChildren;
+
+const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
+
 function Dashboard({ children }: Props) {
-	const [selectedItem, setSelectedItem] = useState<
-		DashboardContextType["selectedItem"] | undefined
-	>(undefined);
+	const [selectedItem, setSelectedItem] = useState<SelectedItem | undefined>(undefined);
+	const [searchTerm, setSearchTerm] = useState("");
 
 	return (
-		<DashboardContext.Provider value={{ selectedItem, setSelectedItem }}>
+		<DashboardContext.Provider
+			value={{ selectedItem, setSelectedItem, searchTerm, setSearchTerm }}
+		>
 			{children}
 		</DashboardContext.Provider>
 	);

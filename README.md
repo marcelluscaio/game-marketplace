@@ -13,6 +13,7 @@ Tasks
 - [x] Add CSS reset
 - [x] Set colors and fonts
 - [x] Create impersonation page UI
+  - [ ] Adjust fram so on Markeplace screen footer can be full width
   - [ ] Create custom select
   - [ ] Create custom arrow with css
 - [x] Impersonation action

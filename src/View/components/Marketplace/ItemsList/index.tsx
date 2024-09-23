@@ -11,7 +11,7 @@ function ItemList({ items }: Props) {
 		throw new Error("ItemList must be used within a DashboardContext Provider");
 	}
 
-	const { selectedItem, setSelectedItem } = context;
+	const { selectedItem, setSelectedItem, searchTerm } = context;
 
 	useEffect(
 		() =>
@@ -27,23 +27,25 @@ function ItemList({ items }: Props) {
 		<section className={styles.itemSection}>
 			<h2 className={styles.title}>Items:</h2>
 			<ul className={styles.itemList}>
-				{items.map((item) => (
-					<li key={item.id}>
-						<button
-							className={styles.item}
-							onClick={() =>
-								setSelectedItem({
-									id: item.id,
-									name: item.name,
-									itemTypeId: item.itemTypeId,
-								})
-							}
-							disabled={selectedItem?.itemTypeId === item.itemTypeId}
-						>
-							{item.quantity} x {item.name}
-						</button>
-					</li>
-				))}
+				{items
+					.filter((item) => item.name.includes(searchTerm))
+					.map((item) => (
+						<li key={item.id}>
+							<button
+								className={styles.item}
+								onClick={() =>
+									setSelectedItem({
+										id: item.id,
+										name: item.name,
+										itemTypeId: item.itemTypeId,
+									})
+								}
+								disabled={selectedItem?.itemTypeId === item.itemTypeId}
+							>
+								{item.quantity} x {item.name}
+							</button>
+						</li>
+					))}
 			</ul>
 		</section>
 	);
