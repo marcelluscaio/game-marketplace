@@ -1,23 +1,37 @@
 "use client";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DashboardContext } from "../Dashboard";
 import styles from "./styles.module.css";
 import type { OfferFromDb } from "@/server/schema/offer";
+import type { Item } from "@/server/schema/items";
 
 type Props = {
 	initialOffers: OfferFromDb[];
+	getOffers: (id: Item["itemTypeId"]) => Promise<OfferFromDb[]>;
 };
 
-function OfferTables({ initialOffers }: Props) {
+function OfferTables({ initialOffers, getOffers }: Props) {
 	const context = useContext(DashboardContext);
 
 	if (!context) {
 		throw new Error("ItemList must be used within a DashboardContext Provider");
 	}
-
 	const { selectedItem } = context;
-	const sellOffers = initialOffers.filter((offer) => offer.offerType === "SELL");
-	const buyOffers = initialOffers.filter((offer) => offer.offerType === "BUY");
+
+	const [offers, setOffers] = useState(initialOffers);
+	useEffect(() => {
+		async function get() {
+			if (selectedItem) {
+				const newOffers = await getOffers(selectedItem);
+				setOffers(newOffers);
+			}
+		}
+
+		get();
+	}, [selectedItem]);
+
+	const sellOffers = offers.filter((offer) => offer.offerType === "SELL");
+	const buyOffers = offers.filter((offer) => offer.offerType === "BUY");
 
 	return (
 		<section>

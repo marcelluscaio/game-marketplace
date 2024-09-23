@@ -23,7 +23,10 @@ async function Marketplace({ id }: Props) {
 			<p className={styles.greeting}>{`Hello, ${nickname}`}</p>
 			<Dashboard>
 				<ItemList items={items} />
-				<OfferTables initialOffers={initalOffers} />
+				<OfferTables
+					initialOffers={initalOffers}
+					getOffers={getOffers}
+				/>
 				<section className={styles.searchSection}>
 					<h2 className={styles.title}>Search:</h2>
 					<form>
