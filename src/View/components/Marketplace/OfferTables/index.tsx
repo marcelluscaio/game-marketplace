@@ -39,7 +39,7 @@ function OfferTables({ initialOffers }: Props) {
 								<td>{offer.owner}</td>
 								<td>{offer.quantity}</td>
 								<td>{offer.pricePerUnit}</td>
-								<td>Get total from db</td>
+								<td>{offer.totalPrice}</td>
 								<td>{offer.endDate.toLocaleString()}</td>
 							</tr>
 						))}
@@ -64,7 +64,7 @@ function OfferTables({ initialOffers }: Props) {
 								<td>{offer.owner}</td>
 								<td>{offer.quantity}</td>
 								<td>{offer.pricePerUnit}</td>
-								<td>Get total from db</td>
+								<td>{offer.totalPrice}</td>
 								<td>{offer.endDate.toLocaleString()}</td>
 							</tr>
 						))}
