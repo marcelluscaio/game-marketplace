@@ -13,8 +13,16 @@ const OfferSchema = z.object({
 		}),
 });
 
-//TODO itemId deve vir de um tipo a partir de um schema
-type Offer = z.infer<typeof OfferSchema> & { itemId: number };
+type OfferForm = z.infer<typeof OfferSchema>;
 
-export type { Offer };
+//TODO itemId deve vir de um tipo a partir de um schema
+type Offer = OfferForm & {
+	itemId: number;
+	itemTypeId: number;
+	totalPrice: number;
+};
+
+type OfferFromDb = Offer & { id: number; owner: string };
+
+export type { OfferForm, Offer, OfferFromDb };
 export { OfferSchema };

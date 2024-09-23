@@ -22,7 +22,7 @@ model Player {
 
 model ItemInstance {
   id       Int     @id @default(autoincrement())
-  quantity Int @default(0)
+  quantity Int     @default(0)
   item     Item    @relation(fields: [itemId], references: [id])
   itemId   Int
   owner    Player  @relation(fields: [ownerId], references: [id])
@@ -34,6 +34,7 @@ model Item {
   id        Int            @id @default(autoincrement())
   name      String         @unique
   instances ItemInstance[]
+  offers    Offer[]
 }
 
 model Offer {
@@ -41,9 +42,12 @@ model Offer {
   offerType    OfferType
   quantity     Int
   pricePerUnit Int
+  totalPrice   Int
   endDate      DateTime
   item         ItemInstance @relation(fields: [itemId], references: [id])
   itemId       Int
+  itemType     Item         @relation(fields: [itemTypeId], references: [id])
+  itemTypeId   Int
 }
 
 enum OfferType {

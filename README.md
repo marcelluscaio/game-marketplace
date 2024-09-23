@@ -18,14 +18,17 @@ Tasks
 - [x] Impersonation action
 - [x] Create Dashboard
 - [x] Get Dashboard data from data base
-  - [x] Player's Players Inventory (Items and quantity)
-  - [x] Player's Gold
-  - [ ] Get Offers for the first item on list
-- [ ] Make click on item change offers
-- [ ] Make Search work
+  - [x] Display Player's Inventory (Items and quantity)
+  - [x] Display Player's Gold
+  - [ ] Enhance Dashboard styling
 - [x] Create modal UI
   - [x] Calculate total
+  - [ ] Enhance modal styling
 - [x] Post offer
+- [x] Get Offers for the first item on list
+- [ ] Make click on item change offers
+- [ ] Make click on item change offer creation
+- [ ] Make Search work
 
 ## How to run
 
@@ -37,12 +40,10 @@ Tasks
 
 ## Notes
 
-- Offer total value will be a calculated field https://www.prisma.io/docs/orm/prisma-client/queries/computed-fields
 - Unit tests https://nextjs.org/docs/app/building-your-application/testing/jest
 - E2E tests https://nextjs.org/docs/app/building-your-application/testing/playwright
 
-Pasta em src
-
+Pastas em src
 Components (View)
 Libs (Dayjs, outras bibliotecas)
 Helpers (Funcoes muito utilizadas)
@@ -54,13 +55,11 @@ https://ux.stackexchange.com/questions/17347/ok-for-dropdown-button-to-be-on-the
 Construir select
 https://blog.logrocket.com/creating-custom-select-dropdown-css/
 
-Usar o Schema PLayers para fazer parse
+Usar o Schema Players para fazer parse
 
 Adicionar pagina de erro caso navegue para alguma pagina que nao existe
 
 Adicionar validacao com react hook form e zod em impersonation
-
-Id do jogador deve ser uuid
 
 Fazer button polimorfico que possa ser Link tmbm
 
@@ -68,3 +67,9 @@ Next com Prisma
 https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
 
 Lidar com validacao depois
+
+Mobile
+
+Navegacao teclado
+
+Verificar consistencia (imports, uso de function x arrow function, import - function - export)
