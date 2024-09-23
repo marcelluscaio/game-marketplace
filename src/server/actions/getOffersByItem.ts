@@ -6,7 +6,19 @@ export async function getOffers(id: Item["itemTypeId"]) {
 		where: {
 			itemTypeId: id,
 		},
+		include: {
+			item: {
+				select: {
+					owner: true,
+				},
+			},
+		},
 	});
 
-	return offers;
+	const offersWithOwner = offers.map((offer) => {
+		const { item, ...rest } = offer;
+		return { ...rest, owner: item.owner.nickname };
+	});
+
+	return offersWithOwner;
 }

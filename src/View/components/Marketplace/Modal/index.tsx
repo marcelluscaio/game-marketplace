@@ -45,6 +45,7 @@ function Modal({ item, formAction }: Props) {
 			...formData,
 			itemId: item.id,
 			itemTypeId: item.itemTypeId,
+			totalPrice: total,
 		});
 		if (result.status === "success") {
 			//TODO Show success dialog

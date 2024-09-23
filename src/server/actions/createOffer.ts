@@ -9,7 +9,10 @@ async function createOffer(offerData: Offer): Promise<ActionReturn> {
 	"use server";
 	try {
 		const validatedData = OfferSchema.safeParse(offerData);
-		if (validatedData.success) {
+		//TODO provide better validation and error message
+		const totalValidation =
+			offerData.totalPrice === offerData.quantity * offerData.pricePerUnit;
+		if (validatedData.success && totalValidation) {
 			const offer = await db.offer.create({
 				data: offerData,
 			});

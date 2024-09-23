@@ -29,7 +29,7 @@ export async function getPlayerData(id: Player["id"]) {
 			},
 		});
 		if (player === null) {
-			throw new Error("Player not found the database");
+			throw new Error("Player not found in the database");
 		}
 		const flattenedItems = player.items.map((item) => {
 			const {
