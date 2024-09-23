@@ -1,18 +1,27 @@
+.align {
+	padding-inline: var(--padding-inline);
+}
+.title {
+	margin-bottom: 0.25em;
+}
+
 .container {
 	display: grid;
-	grid-template-columns: auto 1fr;
-	grid-template-rows: auto 1fr auto auto;
 	justify-self: stretch;
 	align-self: stretch;
 	gap: var(--padding-inline);
+
+	grid-column: 1/4;
 }
 
 .greeting {
-	grid-column: span 2;
+	text-align: center;
 }
 
-.title {
-	margin-bottom: 0.25em;
+.dashboard {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: inherit;
 }
 
 .footer {
@@ -20,9 +29,8 @@
 	justify-content: space-between;
 	align-items: center;
 
-	grid-column: span 2;
-
 	padding-top: var(--padding-inline);
+	padding-inline: var(--padding-inline);
 	border-top: var(--border-width--medium) solid var(--quaternary);
 }
 
@@ -30,4 +38,14 @@
 	display: flex;
 	/* TODO alinhar com o styleguide */
 	gap: 16px;
+}
+
+@media (max-width: 65em) {
+	.dashboard {
+		grid-template-columns: 1fr;
+	}
+
+	.dashboard > * {
+		grid-column: span 1;
+	}
 }

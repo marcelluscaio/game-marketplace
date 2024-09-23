@@ -6,7 +6,7 @@
 
 	width: 60%;
 	border: none;
-	border-radius: var(--border-radius--small);
+	border-radius: var(--border-radius--large);
 }
 
 .container {
@@ -14,27 +14,99 @@
 	padding-inline: 2rem;
 	min-height: 50vh;
 	border: var(--border-width--large) solid var(--quaternary);
-	border-radius: var(--border-radius--small);
+	border-radius: var(--border-radius--large);
 }
+
 .container > p {
 	text-align: center;
+	margin-bottom: 0.5em;
 }
 
 .form {
-	max-width: 25ch;
+	max-width: 35ch;
 	margin-inline: auto;
 }
 
 .form > fieldset {
 	border: none;
+	margin-bottom: 1rem;
+}
+
+.form > fieldset > div,
+.totalPrice > p:first-child {
+	display: grid;
+	grid-template-columns: 50% 1fr;
+	justify-items: start;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.form > fieldset p,
+.error {
+	font-size: 1rem;
+	color: var(--primary);
 }
 
 .form input {
+	width: 100%;
+	padding: 0.25em 0.5em;
 	border: var(--border-width--medium) solid var(--foreground);
 	border-radius: var(--border-radius--small);
 }
 
+.form input[type="date"] {
+	width: calc(100% - 1.125em);
+}
+
+.radioGroup {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.5rem;
+}
+
+.totalPrice {
+	margin-bottom: 1em;
+}
+
 .buttonContainer {
 	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
 	justify-content: space-between;
+	margin-inline: auto;
+	max-width: 25ch;
+}
+
+.successModal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	width: 40%;
+	border: none;
+	border-radius: var(--border-radius--large);
+}
+
+.successContainer {
+	display: grid;
+	place-content: center;
+	gap: 1rem;
+	padding-block: 1rem;
+	padding-inline: 2rem;
+	min-height: 50vh;
+	border: var(--border-width--large) solid var(--quaternary);
+	border-radius: var(--border-radius--large);
+}
+
+@media (max-width: 60em) {
+	.form > fieldset > div,
+	.totalPrice > p {
+		grid-template-columns: 1fr;
+		justify-items: center;
+	}
+
+	.form input[type="date"] {
+		width: 100%;
+	}
 }

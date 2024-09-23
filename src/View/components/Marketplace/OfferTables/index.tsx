@@ -4,6 +4,7 @@ import { DashboardContext } from "../Dashboard";
 import styles from "./styles.module.css";
 import type { OfferFromDb } from "@/server/schema/offer";
 import type { Item } from "@/server/schema/items";
+import { formatDate } from "../Modal";
 
 type Props = {
 	initialOffers: OfferFromDb[];
@@ -16,7 +17,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 	if (!context) {
 		throw new Error("Component must be used within a DashboardContext Provider");
 	}
-	const { selectedItem } = context;
+	const { selectedItem, newItem, setNewItem } = context;
 
 	const [offers, setOffers] = useState(initialOffers);
 	useEffect(() => {
@@ -30,14 +31,26 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 		get();
 	}, [selectedItem]);
 
+	useEffect(() => {
+		async function get() {
+			if (selectedItem && newItem) {
+				const newOffers = await getOffers(selectedItem.itemTypeId);
+				setOffers(newOffers);
+				setNewItem(false);
+			}
+		}
+
+		get();
+	}, [newItem]);
+
 	const sellOffers = offers.filter((offer) => offer.offerType === "SELL");
 	const buyOffers = offers.filter((offer) => offer.offerType === "BUY");
 
 	return (
-		<section>
+		<section className={styles.tablesContainer}>
 			<div>
 				<h2 className={styles.title}>Sell Offers:</h2>
-				<table>
+				<table className={styles.table}>
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -54,7 +67,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 								<td>{offer.quantity}</td>
 								<td>{offer.pricePerUnit}</td>
 								<td>{offer.totalPrice}</td>
-								<td>{offer.endDate.toLocaleString()}</td>
+								<td>{formatDate(new Date(offer.endDate))}</td>
 							</tr>
 						))}
 					</tbody>
@@ -62,7 +75,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 			</div>
 			<div>
 				<h2 className={styles.title}>Buy Offers:</h2>
-				<table>
+				<table className={styles.table}>
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -79,7 +92,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 								<td>{offer.quantity}</td>
 								<td>{offer.pricePerUnit}</td>
 								<td>{offer.totalPrice}</td>
-								<td>{offer.endDate.toLocaleString()}</td>
+								<td>{formatDate(new Date(offer.endDate))}</td>
 							</tr>
 						))}
 					</tbody>

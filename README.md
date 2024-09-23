@@ -13,8 +13,7 @@ Tasks
 - [x] Add CSS reset
 - [x] Set colors and fonts
 - [x] Create impersonation page UI
-  - [ ] Make frame exactaly 100svh and let the dashboard scroll
-  - [ ] Adjust frame so on Markeplace screen footer can be full width
+  - [x] Adjust frame so on Markeplace screen footer can be full width
   - [ ] Create custom select
   - [ ] Create custom arrow with css
 - [x] Impersonation action
@@ -22,7 +21,7 @@ Tasks
 - [x] Get Dashboard data from data base
   - [x] Display Player's Inventory (Items and quantity)
   - [x] Display Player's Gold
-  - [ ] Enhance Dashboard styling
+  - [x] Enhance Dashboard styling
 - [x] Create modal UI
   - [x] Calculate total
   - [ ] Enhance modal styling
@@ -31,6 +30,17 @@ Tasks
 - [x] Make click on item change offers
 - [x] Make click on item change offer creation
 - [x] Make Search work
+- [ ] When a Buy Offer is made, the offers total value is commited to the offer and deducted from the user’s inventory
+- [ ] When a Sell Offer is made, the offer’s bundle is commited to the offer and removed from the user’s inventory.
+- [ ] HTTP API
+- [ ] All the recoverable errors should be handled, making the user experience the more pleasant the possible
+- [ ] Unit tests are required
+- [ ] End-to-end tests are desired
+- [ ] The offer’s total price cannot exceed the player’s gold, and if it does, there must be some kind of visual feedback and the user must not be able to create the offer.
+- [ ] The offer’s total price must be deducted from the player’s gold.
+- [ ] There must be some kind of visual feedback while the offer is being created.
+- [x] If the offer creation is succesfull, the dashboard must be updated so that it displays the newly created offer.
+- [ ] Fazer "No offers for this item"
 
 ## How to run
 

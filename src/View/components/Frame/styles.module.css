@@ -7,8 +7,13 @@
 
 .frame {
 	display: grid;
+	grid-template-columns: var(--padding-inline) 1fr var(--padding-inline);
 	place-items: center;
-	padding: var(--padding-block) var(--padding-inline);
+	padding-block: var(--padding-block);
 	border: var(--border-width--large) solid var(--primary);
 	border-radius: var(--border-radius--large);
+}
+
+.frame > * {
+	grid-column: 2/3;
 }

@@ -10,6 +10,7 @@
 .itemList {
 	display: grid;
 	align-content: start;
+	align-self: start;
 	/* TODO alinhar com o styleguide */
 	gap: 16px;
 	padding: var(--padding-block--small) var(--padding-inline--small);
