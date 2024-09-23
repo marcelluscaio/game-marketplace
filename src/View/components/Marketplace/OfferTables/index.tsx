@@ -17,7 +17,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 	if (!context) {
 		throw new Error("Component must be used within a DashboardContext Provider");
 	}
-	const { selectedItem } = context;
+	const { selectedItem, newItem, setNewItem } = context;
 
 	const [offers, setOffers] = useState(initialOffers);
 	useEffect(() => {
@@ -30,6 +30,18 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 
 		get();
 	}, [selectedItem]);
+
+	useEffect(() => {
+		async function get() {
+			if (selectedItem && newItem) {
+				const newOffers = await getOffers(selectedItem.itemTypeId);
+				setOffers(newOffers);
+				setNewItem(false);
+			}
+		}
+
+		get();
+	}, [newItem]);
 
 	const sellOffers = offers.filter((offer) => offer.offerType === "SELL");
 	const buyOffers = offers.filter((offer) => offer.offerType === "BUY");

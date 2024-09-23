@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { ActionReturn } from "@/server/actions/createOffer";
 import { DashboardContext } from "../Dashboard";
+import { useRouter } from "next/navigation";
 
 type FormData = OfferForm;
 type Props = {
@@ -14,19 +15,28 @@ type Props = {
 };
 
 function Modal({ formAction }: Props) {
+	const router = useRouter();
 	const context = useContext(DashboardContext);
 	if (!context) {
 		throw new Error("ItemList must be used within a DashboardContext Provider");
 	}
-	const { selectedItem } = context;
+	const { selectedItem, setNewItem } = context;
 
 	const ref = useRef<HTMLDialogElement | null>(null);
+	const successDialog = useRef<HTMLDialogElement | null>(null);
 
 	function closeModal() {
 		ref.current?.close();
 	}
 	function openModal() {
 		ref.current?.showModal();
+	}
+
+	function openSuccessDialog() {
+		successDialog.current?.showModal();
+	}
+	function closeSuccessDialog() {
+		successDialog.current?.close();
 	}
 
 	const { register, handleSubmit, formState, watch } = useForm<FormData>({
@@ -52,13 +62,19 @@ function Modal({ formAction }: Props) {
 			totalPrice: total,
 		});
 		if (result.status === "success") {
-			//TODO Show success dialog
+			openSuccessDialog();
 			//TODO Dialog closes modal and refreshes page
 			const { offer } = result;
 		} else {
 			//TODO show error dialog
 			const { message } = result;
 		}
+	};
+
+	const handleSuccessDialog = () => {
+		closeSuccessDialog();
+		closeModal();
+		setNewItem(true);
 	};
 
 	return (
@@ -163,6 +179,16 @@ function Modal({ formAction }: Props) {
 						</div>
 					</form>
 				</div>
+			</dialog>
+			<dialog
+				ref={successDialog}
+				className={styles.modal}
+			>
+				<p>Criado com sucesso</p>
+				<Button
+					onClick={handleSuccessDialog}
+					text="Fechar"
+				/>
 			</dialog>
 		</>
 	);

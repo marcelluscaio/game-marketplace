@@ -21,7 +21,7 @@ Tasks
 - [x] Get Dashboard data from data base
   - [x] Display Player's Inventory (Items and quantity)
   - [x] Display Player's Gold
-  - [ ] Enhance Dashboard styling
+  - [x] Enhance Dashboard styling
 - [x] Create modal UI
   - [x] Calculate total
   - [ ] Enhance modal styling
@@ -36,6 +36,10 @@ Tasks
 - [ ] All the recoverable errors should be handled, making the user experience the more pleasant the possible
 - [ ] Unit tests are required
 - [ ] End-to-end tests are desired
+- [ ] The offer’s total price cannot exceed the player’s gold, and if it does, there must be some kind of visual feedback and the user must not be able to create the offer.
+- [ ] The offer’s total price must be deducted from the player’s gold.
+- [ ] There must be some kind of visual feedback while the offer is being created.
+- [x] If the offer creation is succesfull, the dashboard must be updated so that it displays the newly created offer.
 
 ## How to run
 
