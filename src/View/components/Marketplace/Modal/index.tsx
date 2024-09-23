@@ -2,12 +2,12 @@
 import { useRef } from "react";
 import { Button } from "../../Button";
 import styles from "./styles.module.css";
-import { OfferSchema, type Offer } from "@/server/schema/offer";
+import { OfferSchema, type Offer, type OfferForm } from "@/server/schema/offer";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { ActionReturn } from "@/server/actions/createOffer";
 
-type FormData = Omit<Offer, "itemId" | "itemTypeId">;
+type FormData = OfferForm;
 type Props = {
 	//TODO isso deve vir de um tipo a aprtir de um schema
 	item: {
