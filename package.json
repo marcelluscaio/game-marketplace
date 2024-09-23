@@ -12,11 +12,13 @@
 		"seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
 	},
 	"dependencies": {
+		"@hookform/resolvers": "^3.9.0",
 		"@prisma/client": "^5.19.1",
 		"dayjs": "^1.11.13",
 		"next": "14.2.13",
 		"react": "^18",
 		"react-dom": "^18",
+		"react-hook-form": "^7.53.0",
 		"ts-node": "^10.9.2",
 		"zod": "^3.23.8"
 	},

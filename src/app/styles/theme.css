@@ -9,8 +9,8 @@
 	--background: var(--light-base);
 	--foreground: var(--dark-base);
 
-	/* @link https://utopia.fyi/type/calculator?c=320,18,1.2,2000,42,1.25,0,0,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
-	--fs-1: clamp(1.125rem, 0.8393rem + 1.4286vw, 2.625rem);
+	/* @link https://utopia.fyi/type/calculator?c=320,18,1.2,2000,32,1.25,0,0,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+	--fs-1: clamp(1.125rem, 0.9583rem + 0.8333vw, 2rem);
 
 	--full-height-fallback: 100vh;
 	--full-height: 100svh;

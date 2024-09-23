@@ -18,34 +18,31 @@ model Player {
   nickname String         @unique
   gold     Int            @default(0)
   items    ItemInstance[]
-  offers   Offer[]
 }
 
 model ItemInstance {
-  id       Int    @id @default(autoincrement())
-  quantity Int
-  item     Item   @relation(fields: [itemId], references: [id])
+  id       Int     @id @default(autoincrement())
+  quantity Int @default(0)
+  item     Item    @relation(fields: [itemId], references: [id])
   itemId   Int
-  owner    Player @relation(fields: [ownerId], references: [id])
+  owner    Player  @relation(fields: [ownerId], references: [id])
   ownerId  String
+  offers   Offer[]
 }
 
 model Item {
   id        Int            @id @default(autoincrement())
   name      String         @unique
   instances ItemInstance[]
-  offers    Offer[]
 }
 
 model Offer {
-  id           Int       @id @default(autoincrement())
+  id           Int          @id @default(autoincrement())
   offerType    OfferType
   quantity     Int
   pricePerUnit Int
   endDate      DateTime
-  player       Player    @relation(fields: [playerId], references: [id])
-  playerId     String
-  item         Item      @relation(fields: [itemId], references: [id])
+  item         ItemInstance @relation(fields: [itemId], references: [id])
   itemId       Int
 }
 
