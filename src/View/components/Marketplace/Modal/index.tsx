@@ -83,58 +83,68 @@ function Modal({ formAction }: Props) {
 						onSubmit={handleSubmit(onSubmit)}
 					>
 						<fieldset>
-							<label>Price Per Unit:</label>
-							<input
-								type="text"
-								{...register("pricePerUnit", {
-									valueAsNumber: true,
-								})}
-							/>
+							<div>
+								<label>Price Per Unit:</label>
+								<input
+									type="text"
+									{...register("pricePerUnit", {
+										valueAsNumber: true,
+									})}
+								/>
+							</div>
 							<p>{errors?.pricePerUnit?.message}</p>
 						</fieldset>
 						<fieldset>
-							<label>Amount:</label>
-							<input
-								type="text"
-								{...register("quantity", { valueAsNumber: true })}
-							/>
+							<div>
+								<label>Amount:</label>
+								<input
+									type="text"
+									{...register("quantity", { valueAsNumber: true })}
+								/>
+							</div>
 							<p>{errors?.quantity?.message}</p>
 						</fieldset>
 						<fieldset>
-							<label>Ends At:</label>
-							<input
-								type="date"
-								min={today()}
-								{...register("endDate", {
-									valueAsDate: true,
-									setValueAs: (value) => (value === "" ? "" : value),
-								})}
-							/>
+							<div>
+								<label>Ends At:</label>
+								<input
+									type="date"
+									min={today()}
+									{...register("endDate", {
+										valueAsDate: true,
+										setValueAs: (value) => (value === "" ? "" : value),
+									})}
+								/>
+							</div>
 							<p>{errors?.endDate?.message}</p>
 						</fieldset>
 						<fieldset>
-							<legend>Offer Type:</legend>
 							<div>
-								<label htmlFor="buy">Buy:</label>
-								<input
-									type="radio"
-									id="buy"
-									value="BUY"
-									{...register("offerType")}
-								/>
-							</div>
-							<div>
-								<label htmlFor="sell">Sell:</label>
-								<input
-									type="radio"
-									id="sell"
-									value="SELL"
-									{...register("offerType")}
-								/>
+								<legend>Offer Type:</legend>
+								<div className={styles.radioGroup}>
+									<div>
+										<label htmlFor="buy">Buy:</label>
+										<input
+											type="radio"
+											id="buy"
+											value="BUY"
+											{...register("offerType")}
+										/>
+									</div>
+									<div>
+										<label htmlFor="sell">Sell:</label>
+										<input
+											type="radio"
+											id="sell"
+											value="SELL"
+											{...register("offerType")}
+										/>
+									</div>
+								</div>
 							</div>
 							<p>{errors?.offerType?.message}</p>
 						</fieldset>
-						<div>
+						<div className={styles.totalPrice}>
 							<p>
 								<span>Total Price </span>
 								<span>{total}</span>

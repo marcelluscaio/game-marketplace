@@ -75,7 +75,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 					</thead>
 					<tbody>
 						{buyOffers.map((offer) => (
-							<tr>
+							<tr key={offer.id}>
 								<td>{offer.owner}</td>
 								<td>{offer.quantity}</td>
 								<td>{offer.pricePerUnit}</td>
