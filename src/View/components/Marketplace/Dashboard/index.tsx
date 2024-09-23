@@ -29,4 +29,6 @@ function Dashboard({ children }: Props) {
 	);
 }
 
+//TODO create custom hook
+
 export { DashboardContext, Dashboard };

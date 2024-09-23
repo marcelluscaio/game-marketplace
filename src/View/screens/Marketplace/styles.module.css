@@ -11,30 +11,9 @@
 	grid-column: span 2;
 }
 
-/* .itemSection {
-	display: grid;
-	grid-template-rows: auto 1fr;
-} */
-
 .title {
 	margin-bottom: 0.25em;
 }
-
-/* .itemList {
-	display: grid;
-	align-content: start; */
-/* TODO alinhar com o styleguide */
-/* gap: 16px;
-	padding: var(--padding-block--small) var(--padding-inline--small);
-	border: var(--border-width--medium) solid var(--secondary700);
-	border-radius: var(--border-radius--medium);
-}
-
-.item {
-	padding-inline: 0.25em;
-	border: var(--border-width--medium) solid var(--tertiary);
-	border-radius: var(--border-radius--medium);
-} */
 
 .footer {
 	display: flex;

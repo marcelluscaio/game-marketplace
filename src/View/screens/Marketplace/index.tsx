@@ -29,15 +29,6 @@ async function Marketplace({ id }: Props) {
 					getOffers={getOffers}
 				/>
 				<Search />
-				{/* <section className={styles.searchSection}>
-					<h2 className={styles.title}>Search:</h2>
-					<form>
-						<input
-							className={styles.search}
-							type="text"
-						/>
-					</form>
-				</section> */}
 				<section className={styles.footer}>
 					<h2 className="visually-hidden">Footer</h2>
 					<p>Gold: {gold}</p>

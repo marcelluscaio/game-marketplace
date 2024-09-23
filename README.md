@@ -13,7 +13,8 @@ Tasks
 - [x] Add CSS reset
 - [x] Set colors and fonts
 - [x] Create impersonation page UI
-  - [ ] Adjust fram so on Markeplace screen footer can be full width
+  - [ ] Make frame exactaly 100svh and let the dashboard scroll
+  - [ ] Adjust frame so on Markeplace screen footer can be full width
   - [ ] Create custom select
   - [ ] Create custom arrow with css
 - [x] Impersonation action
@@ -29,7 +30,7 @@ Tasks
 - [x] Get Offers for the first item on list
 - [x] Make click on item change offers
 - [x] Make click on item change offer creation
-- [ ] Make Search work
+- [x] Make Search work
 
 ## How to run
 
