@@ -18,14 +18,16 @@ Tasks
 - [x] Impersonation action
 - [x] Create Dashboard
 - [x] Get Dashboard data from data base
-  - [x] Player's Players Inventory (Items and quantity)
-  - [x] Player's Gold
-  - [ ] Get Offers for the first item on list
-- [ ] Make click on item change offers
-- [ ] Make Search work
+  - [x] Display Player's Inventory (Items and quantity)
+  - [x] Display Player's Gold
+  - [ ] Enhance Dashboard styling
 - [x] Create modal UI
   - [x] Calculate total
+  - [ ] Enhance modal styling
 - [x] Post offer
+- [ ] Make click on item change offers
+- [ ] Get Offers for the first item on list
+- [ ] Make Search work
 
 ## How to run
 
