@@ -13,7 +13,15 @@ function ItemList({ items }: Props) {
 
 	const { selectedItem, setSelectedItem } = context;
 
-	useEffect(() => setSelectedItem(items[0].itemTypeId), []);
+	useEffect(
+		() =>
+			setSelectedItem({
+				id: items[0].id,
+				name: items[0].name,
+				itemTypeId: items[0].itemTypeId,
+			}),
+		[]
+	);
 
 	return (
 		<section className={styles.itemSection}>
@@ -23,8 +31,14 @@ function ItemList({ items }: Props) {
 					<li key={item.id}>
 						<button
 							className={styles.item}
-							onClick={() => setSelectedItem(item.itemTypeId)}
-							disabled={selectedItem === item.itemTypeId}
+							onClick={() =>
+								setSelectedItem({
+									id: item.id,
+									name: item.name,
+									itemTypeId: item.itemTypeId,
+								})
+							}
+							disabled={selectedItem?.itemTypeId === item.itemTypeId}
 						>
 							{item.quantity} x {item.name}
 						</button>

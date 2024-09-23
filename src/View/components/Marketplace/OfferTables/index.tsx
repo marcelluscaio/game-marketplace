@@ -22,7 +22,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 	useEffect(() => {
 		async function get() {
 			if (selectedItem) {
-				const newOffers = await getOffers(selectedItem);
+				const newOffers = await getOffers(selectedItem.itemTypeId);
 				setOffers(newOffers);
 			}
 		}

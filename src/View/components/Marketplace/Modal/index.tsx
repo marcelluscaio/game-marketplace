@@ -1,24 +1,25 @@
 "use client";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { Button } from "../../Button";
 import styles from "./styles.module.css";
 import { OfferSchema, type Offer, type OfferForm } from "@/server/schema/offer";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { ActionReturn } from "@/server/actions/createOffer";
+import { DashboardContext } from "../Dashboard";
 
 type FormData = OfferForm;
 type Props = {
-	//TODO isso deve vir de um tipo a aprtir de um schema
-	item: {
-		id: number;
-		name: string;
-		itemTypeId: number;
-	};
 	formAction: (data: Offer) => Promise<ActionReturn>;
 };
 
-function Modal({ item, formAction }: Props) {
+function Modal({ formAction }: Props) {
+	const context = useContext(DashboardContext);
+	if (!context) {
+		throw new Error("ItemList must be used within a DashboardContext Provider");
+	}
+	const { selectedItem } = context;
+
 	const ref = useRef<HTMLDialogElement | null>(null);
 
 	function closeModal() {
@@ -41,10 +42,13 @@ function Modal({ item, formAction }: Props) {
 	);
 
 	const onSubmit = async (formData: FormData) => {
+		if (selectedItem === undefined) {
+			return;
+		}
 		const result = await formAction({
 			...formData,
-			itemId: item.id,
-			itemTypeId: item.itemTypeId,
+			itemId: selectedItem.id,
+			itemTypeId: selectedItem.itemTypeId,
 			totalPrice: total,
 		});
 		if (result.status === "success") {
@@ -73,7 +77,7 @@ function Modal({ item, formAction }: Props) {
 				}}
 			>
 				<div className={styles.container}>
-					<p>Item: {item.name}</p>
+					<p>Item: {selectedItem?.name}</p>
 					<form
 						className={styles.form}
 						onSubmit={handleSubmit(onSubmit)}

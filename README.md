@@ -26,8 +26,8 @@ Tasks
   - [ ] Enhance modal styling
 - [x] Post offer
 - [x] Get Offers for the first item on list
-- [ ] Make click on item change offers
-- [ ] Make click on item change offer creation
+- [x] Make click on item change offers
+- [x] Make click on item change offer creation
 - [ ] Make Search work
 
 ## How to run
