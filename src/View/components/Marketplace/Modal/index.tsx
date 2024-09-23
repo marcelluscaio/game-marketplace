@@ -63,7 +63,6 @@ function Modal({ formAction }: Props) {
 		});
 		if (result.status === "success") {
 			openSuccessDialog();
-			//TODO Dialog closes modal and refreshes page
 			const { offer } = result;
 		} else {
 			//TODO show error dialog
@@ -182,13 +181,20 @@ function Modal({ formAction }: Props) {
 			</dialog>
 			<dialog
 				ref={successDialog}
-				className={styles.modal}
+				className={styles.successModal}
+				onClick={(e) => {
+					if ((e.target as HTMLElement).tagName === "DIALOG") {
+						handleSuccessDialog();
+					}
+				}}
 			>
-				<p>Criado com sucesso</p>
-				<Button
-					onClick={handleSuccessDialog}
-					text="Fechar"
-				/>
+				<div className={styles.successContainer}>
+					<p>Criado com sucesso</p>
+					<Button
+						onClick={handleSuccessDialog}
+						text="Fechar"
+					/>
+				</div>
 			</dialog>
 		</>
 	);

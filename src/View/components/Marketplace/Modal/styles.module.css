@@ -76,6 +76,28 @@
 	max-width: 25ch;
 }
 
+.successModal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	width: 40%;
+	border: none;
+	border-radius: var(--border-radius--large);
+}
+
+.successContainer {
+	display: grid;
+	place-content: center;
+	gap: 1rem;
+	padding-block: 1rem;
+	padding-inline: 2rem;
+	min-height: 50vh;
+	border: var(--border-width--large) solid var(--quaternary);
+	border-radius: var(--border-radius--large);
+}
+
 @media (max-width: 60em) {
 	.form > fieldset > div,
 	.totalPrice > p {
