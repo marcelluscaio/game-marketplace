@@ -198,7 +198,7 @@ function Modal({ formAction, playerGold }: Props) {
 				}}
 			>
 				<div className={styles.successContainer}>
-					<p>Criado com sucesso</p>
+					<p>Created successfully</p>
 					<Button
 						onClick={handleSuccessDialog}
 						text="Fechar"
