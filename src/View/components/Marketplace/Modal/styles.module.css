@@ -1,0 +1,40 @@
+.modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	width: 60%;
+	border: none;
+	border-radius: var(--border-radius--small);
+}
+
+.container {
+	padding-block: 1rem;
+	padding-inline: 2rem;
+	min-height: 50vh;
+	border: var(--border-width--large) solid var(--quaternary);
+	border-radius: var(--border-radius--small);
+}
+.container > p {
+	text-align: center;
+}
+
+.form {
+	max-width: 25ch;
+	margin-inline: auto;
+}
+
+.form > fieldset {
+	border: none;
+}
+
+.form input {
+	border: var(--border-width--medium) solid var(--foreground);
+	border-radius: var(--border-radius--small);
+}
+
+.buttonContainer {
+	display: flex;
+	justify-content: space-between;
+}

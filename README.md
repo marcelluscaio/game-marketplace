@@ -23,8 +23,9 @@ Tasks
   - [ ] Get Offers for the first item on list
 - [ ] Make click on item change offers
 - [ ] Make Search work
-- [ ] Create modal UI
-- [ ] Post offer
+- [x] Create modal UI
+  - [x] Calculate total
+- [x] Post offer
 
 ## How to run
 
@@ -65,3 +66,5 @@ Fazer button polimorfico que possa ser Link tmbm
 
 Next com Prisma
 https://www.prisma.io/docs/orm/more/help-and-troubleshooting/help-articles/nextjs-prisma-client-dev-practices
+
+Lidar com validacao depois
