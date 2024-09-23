@@ -13,7 +13,7 @@ Tasks
 - [x] Add CSS reset
 - [x] Set colors and fonts
 - [x] Create impersonation page UI
-  - [ ] Adjust frame so on Markeplace screen footer can be full width
+  - [x] Adjust frame so on Markeplace screen footer can be full width
   - [ ] Create custom select
   - [ ] Create custom arrow with css
 - [x] Impersonation action
@@ -32,6 +32,10 @@ Tasks
 - [x] Make Search work
 - [ ] When a Buy Offer is made, the offers total value is commited to the offer and deducted from the user’s inventory
 - [ ] When a Sell Offer is made, the offer’s bundle is commited to the offer and removed from the user’s inventory.
+- [ ] HTTP API
+- [ ] All the recoverable errors should be handled, making the user experience the more pleasant the possible
+- [ ] Unit tests are required
+- [ ] End-to-end tests are desired
 
 ## How to run
 

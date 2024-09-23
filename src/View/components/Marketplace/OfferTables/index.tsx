@@ -4,6 +4,7 @@ import { DashboardContext } from "../Dashboard";
 import styles from "./styles.module.css";
 import type { OfferFromDb } from "@/server/schema/offer";
 import type { Item } from "@/server/schema/items";
+import { formatDate } from "../Modal";
 
 type Props = {
 	initialOffers: OfferFromDb[];
@@ -34,10 +35,10 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 	const buyOffers = offers.filter((offer) => offer.offerType === "BUY");
 
 	return (
-		<section>
+		<section className={styles.tablesContainer}>
 			<div>
 				<h2 className={styles.title}>Sell Offers:</h2>
-				<table>
+				<table className={styles.table}>
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -54,7 +55,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 								<td>{offer.quantity}</td>
 								<td>{offer.pricePerUnit}</td>
 								<td>{offer.totalPrice}</td>
-								<td>{offer.endDate.toLocaleString()}</td>
+								<td>{formatDate(new Date(offer.endDate))}</td>
 							</tr>
 						))}
 					</tbody>
@@ -62,7 +63,7 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 			</div>
 			<div>
 				<h2 className={styles.title}>Buy Offers:</h2>
-				<table>
+				<table className={styles.table}>
 					<thead>
 						<tr>
 							<th>Name</th>
@@ -74,12 +75,12 @@ function OfferTables({ initialOffers, getOffers }: Props) {
 					</thead>
 					<tbody>
 						{buyOffers.map((offer) => (
-							<tr key={offer.id}>
+							<tr>
 								<td>{offer.owner}</td>
 								<td>{offer.quantity}</td>
 								<td>{offer.pricePerUnit}</td>
 								<td>{offer.totalPrice}</td>
-								<td>{offer.endDate.toLocaleString()}</td>
+								<td>{formatDate(new Date(offer.endDate))}</td>
 							</tr>
 						))}
 					</tbody>
