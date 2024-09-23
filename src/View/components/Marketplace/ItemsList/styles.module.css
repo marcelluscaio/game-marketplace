@@ -19,6 +19,13 @@
 
 .item {
 	padding-inline: 0.25em;
-	border: var(--border-width--medium) solid var(--tertiary);
+	border: var(--border-width--medium) solid var(--tertiary700);
 	border-radius: var(--border-radius--medium);
+	width: 100%;
+	text-align: left;
+}
+
+.item:disabled {
+	background-color: var(--tertiary100);
+	color: inherit;
 }

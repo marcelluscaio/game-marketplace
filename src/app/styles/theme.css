@@ -4,7 +4,8 @@
 	--primary: #eaaab3;
 	--secondary700: #73a6db;
 	--secondary100: #ebf5fb;
-	--tertiary: #76db73;
+	--tertiary700: #76db73;
+	--tertiary100: #eff5ee;
 	--quaternary: #d9db73;
 	--background: var(--light-base);
 	--foreground: var(--dark-base);

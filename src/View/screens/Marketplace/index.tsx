@@ -23,7 +23,10 @@ async function Marketplace({ id }: Props) {
 			<p className={styles.greeting}>{`Hello, ${nickname}`}</p>
 			<Dashboard>
 				<ItemList items={items} />
-				<OfferTables initialOffers={initalOffers} />
+				<OfferTables
+					initialOffers={initalOffers}
+					getOffers={getOffers}
+				/>
 				<section className={styles.searchSection}>
 					<h2 className={styles.title}>Search:</h2>
 					<form>
@@ -33,27 +36,20 @@ async function Marketplace({ id }: Props) {
 						/>
 					</form>
 				</section>
+				<section className={styles.footer}>
+					<h2 className="visually-hidden">Footer</h2>
+					<p>Gold: {gold}</p>
+					<div className={styles.buttonContainer}>
+						<Link
+							href="/"
+							className={buttonStyles.button}
+						>
+							Switch Player
+						</Link>
+						<Modal formAction={createOffer} />
+					</div>
+				</section>
 			</Dashboard>
-			<section className={styles.footer}>
-				<h2 className="visually-hidden">Footer</h2>
-				<p>Gold: {gold}</p>
-				<div className={styles.buttonContainer}>
-					<Link
-						href="/"
-						className={buttonStyles.button}
-					>
-						Switch Player
-					</Link>
-					<Modal
-						item={{
-							id: items[0].id,
-							name: items[0].name,
-							itemTypeId: items[0].itemTypeId,
-						}}
-						formAction={createOffer}
-					/>
-				</div>
-			</section>
 		</main>
 	);
 }
