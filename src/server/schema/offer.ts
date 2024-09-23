@@ -16,5 +16,7 @@ const OfferSchema = z.object({
 //TODO itemId deve vir de um tipo a partir de um schema
 type Offer = z.infer<typeof OfferSchema> & { itemId: number; itemTypeId: number };
 
-export type { Offer };
+type OfferFromDb = Offer & { id: number };
+
+export type { Offer, OfferFromDb };
 export { OfferSchema };

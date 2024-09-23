@@ -2,8 +2,13 @@
 import { useContext } from "react";
 import { DashboardContext } from "../Dashboard";
 import styles from "./styles.module.css";
+import type { OfferFromDb } from "@/server/schema/offer";
 
-function OfferTables() {
+type Props = {
+	initialOffers: OfferFromDb[];
+};
+
+function OfferTables({ initialOffers }: Props) {
 	const context = useContext(DashboardContext);
 
 	if (!context) {
@@ -11,6 +16,8 @@ function OfferTables() {
 	}
 
 	const { selectedItem } = context;
+	const sellOffers = initialOffers.filter((offer) => offer.offerType === "SELL");
+	const buyOffers = initialOffers.filter((offer) => offer.offerType === "BUY");
 
 	return (
 		<section>
@@ -26,7 +33,17 @@ function OfferTables() {
 							<th>Ends At</th>
 						</tr>
 					</thead>
-					<tbody></tbody>
+					<tbody>
+						{sellOffers.map((offer) => (
+							<tr key={offer.id}>
+								<td>Get name</td>
+								<td>{offer.quantity}</td>
+								<td>{offer.pricePerUnit}</td>
+								<td>Get total from db</td>
+								<td>{offer.endDate.toLocaleString()}</td>
+							</tr>
+						))}
+					</tbody>
 				</table>
 			</div>
 			<div>
@@ -41,7 +58,17 @@ function OfferTables() {
 							<th>Ends At</th>
 						</tr>
 					</thead>
-					<tbody></tbody>
+					<tbody>
+						{buyOffers.map((offer) => (
+							<tr key={offer.id}>
+								<td>Get name</td>
+								<td>{offer.quantity}</td>
+								<td>{offer.pricePerUnit}</td>
+								<td>Get total from db</td>
+								<td>{offer.endDate.toLocaleString()}</td>
+							</tr>
+						))}
+					</tbody>
 				</table>
 			</div>
 		</section>
