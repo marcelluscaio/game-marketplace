@@ -11,4 +11,4 @@ type Item = z.infer<typeof ItemSchema>;
 
 type Items = Item[];
 
-export type { Items };
+export type { Item, Items };

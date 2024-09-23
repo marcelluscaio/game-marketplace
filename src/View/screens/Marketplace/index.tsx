@@ -22,38 +22,6 @@ async function Marketplace({ id }: Props) {
 			<Dashboard>
 				<ItemList items={items} />
 				<OfferTables />
-				{/* <section>
-					<div>
-						<h2 className={styles.title}>Sell Offers:</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Amount</th>
-									<th>Price Per Unit</th>
-									<th>Total Price</th>
-									<th>Ends At</th>
-								</tr>
-							</thead>
-							<tbody></tbody>
-						</table>
-					</div>
-					<div>
-						<h2 className={styles.title}>Buy Offers:</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>Amount</th>
-									<th>Price Per Unit</th>
-									<th>Total Price</th>
-									<th>Ends At</th>
-								</tr>
-							</thead>
-							<tbody></tbody>
-						</table>
-					</div>
-				</section> */}
 				<section className={styles.searchSection}>
 					<h2 className={styles.title}>Search:</h2>
 					<form>
