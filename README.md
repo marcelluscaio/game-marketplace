@@ -40,6 +40,7 @@ Tasks
 - [ ] The offer’s total price must be deducted from the player’s gold.
 - [ ] There must be some kind of visual feedback while the offer is being created.
 - [x] If the offer creation is succesfull, the dashboard must be updated so that it displays the newly created offer.
+- [ ] Fazer "No offers for this item"
 
 ## How to run
 

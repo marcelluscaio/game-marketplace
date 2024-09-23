@@ -1,5 +1,6 @@
 import { db } from "@/server/db/db";
 import { type Offer, OfferSchema } from "../schema/offer";
+import { decreasePlayerGold } from "./decreasePlayerGold";
 
 type Success = { status: "success"; offer: Offer };
 type Error = { status: "error"; message: string };
@@ -12,10 +13,20 @@ async function createOffer(offerData: Offer): Promise<ActionReturn> {
 		//TODO provide better validation and error message
 		const totalValidation =
 			offerData.totalPrice === offerData.quantity * offerData.pricePerUnit;
+
 		if (validatedData.success && totalValidation) {
 			const offer = await db.offer.create({
 				data: offerData,
 			});
+			if (offerData.offerType === "BUY") {
+				const item = await db.itemInstance.findUnique({
+					where: { id: offerData.itemId },
+				});
+				if (item) {
+					await decreasePlayerGold({ id: item?.ownerId, gold: offerData.totalPrice });
+				}
+				//TODO Rollback in case of error
+			}
 			return { status: "success", offer };
 		} else {
 			throw new Error("Invalid data", validatedData.error);

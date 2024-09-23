@@ -33,7 +33,7 @@
 }
 
 .form > fieldset > div,
-.totalPrice > p {
+.totalPrice > p:first-child {
 	display: grid;
 	grid-template-columns: 50% 1fr;
 	justify-items: start;
@@ -41,7 +41,8 @@
 	gap: 0.5rem;
 }
 
-.form > fieldset p {
+.form > fieldset p,
+.error {
 	font-size: 1rem;
 	color: var(--primary);
 }

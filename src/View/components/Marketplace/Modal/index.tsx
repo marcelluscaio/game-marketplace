@@ -7,15 +7,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { ActionReturn } from "@/server/actions/createOffer";
 import { DashboardContext } from "../Dashboard";
-import { useRouter } from "next/navigation";
+import { Player } from "@/server/schema/players";
 
 type FormData = OfferForm;
 type Props = {
 	formAction: (data: Offer) => Promise<ActionReturn>;
+	playerGold: Player["gold"];
 };
 
-function Modal({ formAction }: Props) {
-	const router = useRouter();
+function Modal({ formAction, playerGold }: Props) {
 	const context = useContext(DashboardContext);
 	if (!context) {
 		throw new Error("ItemList must be used within a DashboardContext Provider");
@@ -50,9 +50,13 @@ function Modal({ formAction }: Props) {
 		(acc, current) => acc * current,
 		1
 	);
+	const offerType = watch("offerType");
 
 	const onSubmit = async (formData: FormData) => {
 		if (selectedItem === undefined) {
+			return;
+		}
+		if (total > playerGold && offerType === "BUY") {
 			return;
 		}
 		const result = await formAction({
@@ -62,8 +66,8 @@ function Modal({ formAction }: Props) {
 			totalPrice: total,
 		});
 		if (result.status === "success") {
-			openSuccessDialog();
 			const { offer } = result;
+			openSuccessDialog();
 		} else {
 			//TODO show error dialog
 			const { message } = result;
@@ -163,6 +167,11 @@ function Modal({ formAction }: Props) {
 							<p>
 								<span>Total Price </span>
 								<span>{total}</span>
+							</p>
+							<p className={styles.error}>
+								{total > playerGold &&
+									offerType === "BUY" &&
+									"Total price can't exceed player's total gold when buying"}
 							</p>
 						</div>
 						<div className={styles.buttonContainer}>

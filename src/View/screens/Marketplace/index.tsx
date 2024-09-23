@@ -36,6 +36,7 @@ async function Marketplace({ id }: Props) {
 				</div>
 				<section className={styles.footer}>
 					<h2 className="visually-hidden">Footer</h2>
+					{/* TODO update UI when an offer is made */}
 					<p>Gold: {gold}</p>
 					<div className={styles.buttonContainer}>
 						<Link
@@ -44,7 +45,10 @@ async function Marketplace({ id }: Props) {
 						>
 							Switch Player
 						</Link>
-						<Modal formAction={createOffer} />
+						<Modal
+							formAction={createOffer}
+							playerGold={gold}
+						/>
 					</div>
 				</section>
 			</Dashboard>
