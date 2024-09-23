@@ -13,7 +13,6 @@ Tasks
 - [x] Add CSS reset
 - [x] Set colors and fonts
 - [x] Create impersonation page UI
-  - [ ] Make frame exactaly 100svh and let the dashboard scroll
   - [ ] Adjust frame so on Markeplace screen footer can be full width
   - [ ] Create custom select
   - [ ] Create custom arrow with css
@@ -31,6 +30,8 @@ Tasks
 - [x] Make click on item change offers
 - [x] Make click on item change offer creation
 - [x] Make Search work
+- [ ] When a Buy Offer is made, the offers total value is commited to the offer and deducted from the user’s inventory
+- [ ] When a Sell Offer is made, the offer’s bundle is commited to the offer and removed from the user’s inventory.
 
 ## How to run
 

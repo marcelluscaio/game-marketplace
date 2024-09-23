@@ -20,15 +20,20 @@ async function Marketplace({ id }: Props) {
 
 	return (
 		<main className={styles.container}>
-			<h1 className="visually-hidden">Marketplace</h1>
-			<p className={styles.greeting}>{`Hello, ${nickname}`}</p>
+			<div className={`${styles.greeting} ${styles.align}`}>
+				<h1 className="visually-hidden">Marketplace</h1>
+				<p>{`Hello, ${nickname}`}</p>
+			</div>
+
 			<Dashboard>
-				<ItemList items={items} />
-				<OfferTables
-					initialOffers={initalOffers}
-					getOffers={getOffers}
-				/>
-				<Search />
+				<div className={`${styles.align} ${styles.dashboard}`}>
+					<ItemList items={items} />
+					<OfferTables
+						initialOffers={initalOffers}
+						getOffers={getOffers}
+					/>
+					<Search />
+				</div>
 				<section className={styles.footer}>
 					<h2 className="visually-hidden">Footer</h2>
 					<p>Gold: {gold}</p>
