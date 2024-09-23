@@ -7,20 +7,16 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import type { ActionReturn } from "@/server/actions/createOffer";
 
-type FormData = Omit<Offer, "itemId">;
+type FormData = Omit<Offer, "itemId" | "itemTypeId">;
 type Props = {
 	//TODO isso deve vir de um tipo a aprtir de um schema
-	item: { id: number; name: string };
+	item: {
+		id: number;
+		name: string;
+		itemTypeId: number;
+	};
 	formAction: (data: Offer) => Promise<ActionReturn>;
 };
-
-function today() {
-	const date = new Date();
-	const year = date.getFullYear();
-	const month = String(date.getMonth() + 1).padStart(2, "0");
-	const day = String(date.getDate()).padStart(2, "0");
-	return `${year}-${month}-${day}`;
-}
 
 function Modal({ item, formAction }: Props) {
 	const ref = useRef<HTMLDialogElement | null>(null);
@@ -45,7 +41,11 @@ function Modal({ item, formAction }: Props) {
 	);
 
 	const onSubmit = async (formData: FormData) => {
-		const result = await formAction({ ...formData, itemId: item.id });
+		const result = await formAction({
+			...formData,
+			itemId: item.id,
+			itemTypeId: item.itemTypeId,
+		});
 		if (result.status === "success") {
 			//TODO Show success dialog
 			//TODO Dialog closes modal and refreshes page
@@ -151,6 +151,14 @@ function Modal({ item, formAction }: Props) {
 			</dialog>
 		</>
 	);
+}
+
+function today() {
+	const date = new Date();
+	const year = date.getFullYear();
+	const month = String(date.getMonth() + 1).padStart(2, "0");
+	const day = String(date.getDate()).padStart(2, "0");
+	return `${year}-${month}-${day}`;
 }
 
 export { Modal };

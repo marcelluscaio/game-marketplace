@@ -8,12 +8,14 @@ import { createOffer } from "@/server/actions/createOffer";
 import { ItemList } from "@/View/components/Marketplace/ItemsList";
 import { Dashboard } from "@/View/components/Marketplace/Dashboard";
 import { OfferTables } from "@/View/components/Marketplace/OfferTables";
+import { getOffers } from "@/server/actions/getOffersByItem";
 
 type Props = RouteProps["params"];
 
 async function Marketplace({ id }: Props) {
 	const { player } = await getPlayerData(id);
 	const { gold, nickname, items } = player;
+	const initalOffers = await getOffers(items[0].itemTypeId);
 
 	return (
 		<main className={styles.container}>
@@ -21,7 +23,7 @@ async function Marketplace({ id }: Props) {
 			<p className={styles.greeting}>{`Hello, ${nickname}`}</p>
 			<Dashboard>
 				<ItemList items={items} />
-				<OfferTables />
+				<OfferTables /* initialOffers={initalOffers} */ />
 				<section className={styles.searchSection}>
 					<h2 className={styles.title}>Search:</h2>
 					<form>
@@ -43,7 +45,11 @@ async function Marketplace({ id }: Props) {
 						Switch Player
 					</Link>
 					<Modal
-						item={{ id: items[0].id, name: items[0].name }}
+						item={{
+							id: items[0].id,
+							name: items[0].name,
+							itemTypeId: items[0].itemTypeId,
+						}}
 						formAction={createOffer}
 					/>
 				</div>
