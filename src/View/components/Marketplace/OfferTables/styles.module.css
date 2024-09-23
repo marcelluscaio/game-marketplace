@@ -7,6 +7,11 @@
 	gap: inherit;
 }
 
+.tablesContainer > div {
+	max-width: 100%;
+	overflow-x: scroll;
+}
+
 .table {
 	display: table;
 	border-spacing: 0 0.25rem;
