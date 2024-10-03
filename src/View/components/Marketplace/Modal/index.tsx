@@ -66,11 +66,11 @@ function Modal({ formAction, playerGold }: Props) {
 			totalPrice: total,
 		});
 		if (result.status === "success") {
-			const { offer } = result;
+			/* const { offer } = result; */
 			openSuccessDialog();
 		} else {
 			//TODO show error dialog
-			const { message } = result;
+			/* const { message } = result; */
 		}
 	};
 

@@ -6,6 +6,9 @@ const PlayerSchema = z.object({
 	gold: z.number(),
 });
 
+//TODO aply validation later
+PlayerSchema.safeParse({ name: "Test" });
+
 type Player = z.infer<typeof PlayerSchema>;
 
 type Players = Player[];

@@ -2,7 +2,7 @@ import buttonStyles from "@/View/components/Button/styles.module.css";
 import styles from "./styles.module.css";
 import Link from "next/link";
 import { getPlayerData } from "@/server/actions/getPlayerData";
-import type { RouteProps } from "@/app/(routes)/marketplace/[id]/page";
+import type { RouteProps } from "@/app/marketplace/[id]/page";
 import { Modal } from "@/View/components/Marketplace/Modal";
 import { createOffer } from "@/server/actions/createOffer";
 import { ItemList } from "@/View/components/Marketplace/ItemsList";

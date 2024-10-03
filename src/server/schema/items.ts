@@ -7,6 +7,9 @@ const ItemSchema = z.object({
 	quantity: z.number(),
 });
 
+//TODO aply validation later
+ItemSchema.safeParse({ name: "Test" });
+
 type Item = z.infer<typeof ItemSchema>;
 
 type Items = Item[];

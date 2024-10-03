@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Gloria_Hallelujah } from "next/font/google";
-import "./styles/reset.css";
-import "./styles/theme.css";
-import "./styles/global.css";
+import "@/View/styles/reset.css";
+import "@/View/styles/theme.css";
+import "@/View/styles/global.css";
 import { Frame } from "@/View/components/Frame";
 
 export const metadata: Metadata = {
