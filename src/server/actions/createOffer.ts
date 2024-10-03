@@ -37,5 +37,6 @@ async function createOffer(offerData: Offer): Promise<ActionReturn> {
 	}
 }
 
+//TODO usar o revalidate
 export { createOffer };
 export type { ActionReturn };
