@@ -1,4 +1,4 @@
-import buttonStyles from "@/View/components/Button/styles.module.css";
+import buttonStyles from "@/View/components/Global/Button/styles.module.css";
 import styles from "./styles.module.css";
 import Link from "next/link";
 import { getPlayerData } from "@/server/actions/getPlayerData";

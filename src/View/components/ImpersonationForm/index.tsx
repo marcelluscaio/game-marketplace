@@ -2,7 +2,7 @@
 import { FormEvent, useState } from "react";
 import { Player, Players } from "@/server/schema/players";
 import styles from "./styles.module.css";
-import { Button } from "@/View/components/Button";
+import { Button } from "@/View/components/Global/Button";
 
 type FormData = Player["id"];
 type Props = {

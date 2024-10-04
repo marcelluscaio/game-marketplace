@@ -1,6 +1,6 @@
 "use client";
 import { useContext, useRef } from "react";
-import { Button } from "../../Button";
+import { Button } from "../../Global/Button";
 import styles from "./styles.module.css";
 import { OfferSchema, type Offer, type OfferForm } from "@/server/schema/offer";
 import { useForm } from "react-hook-form";
@@ -46,10 +46,10 @@ function Modal({ formAction, playerGold }: Props) {
 		resolver: zodResolver(OfferSchema),
 	});
 	const { errors } = formState;
-	const total = watch(["pricePerUnit", "quantity"]).reduce(
-		(acc, current) => acc * current,
-		1
-	);
+
+	const total = watch(["pricePerUnit", "quantity"]).reduce((acc, current) => {
+		return (acc || 0) * (current || 0);
+	}, 1);
 	const offerType = watch("offerType");
 
 	const onSubmit = async (formData: FormData) => {
@@ -105,10 +105,8 @@ function Modal({ formAction, playerGold }: Props) {
 							<div>
 								<label>Price Per Unit:</label>
 								<input
-									type="text"
-									{...register("pricePerUnit", {
-										valueAsNumber: true,
-									})}
+									type="number"
+									{...register("pricePerUnit")}
 								/>
 							</div>
 							<p>{errors?.pricePerUnit?.message}</p>
@@ -117,8 +115,8 @@ function Modal({ formAction, playerGold }: Props) {
 							<div>
 								<label>Amount:</label>
 								<input
-									type="text"
-									{...register("quantity", { valueAsNumber: true })}
+									type="number"
+									{...register("quantity")}
 								/>
 							</div>
 							<p>{errors?.quantity?.message}</p>
@@ -129,10 +127,7 @@ function Modal({ formAction, playerGold }: Props) {
 								<input
 									type="date"
 									min={today()}
-									{...register("endDate", {
-										valueAsDate: true,
-										setValueAs: (value) => (value === "" ? "" : value),
-									})}
+									{...register("endDate")}
 								/>
 							</div>
 							<p>{errors?.endDate?.message}</p>

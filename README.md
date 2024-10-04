@@ -9,7 +9,7 @@
 
 ## <a id="about">About the Project</a>
 
-This project was developed as part of a technical assessment, with the requirement to create a fullstack MarketPlace application using React and Node. I chose Next.js as the framework. As a database I chose PostgreSQL, and Prisma served as the ORM.
+This project creates a fullstack MarketPlace application using Next.js as the framework. As a database I chose PostgreSQL, and Prisma served as the ORM.
 
 By using Next.js, I took advantage of built-in support for CSS modules, enabling a robust foundation for building a responsive and dynamic application.
 
@@ -27,11 +27,7 @@ Copy the content from env.example to a .env file and add your configuration.
 
 On your terminal run
 
-- npm install
-- docker compose up -d
-- npx prisma generate
-- npx prisma migrate dev --name init
-- npx prisma migrate reset
+- npm run prisma:initial-setup
 - npm run dev
 
 ## <a id="added">Features</a>
@@ -62,16 +58,30 @@ On your terminal run
 
 ### Future
 
+- [ ] Add mask to input to avoid '01'
+- [ ] Integration between React hook form and buy/sell form
+- [ ] Gold update when setting buy
+- [ ] Create custom select
+- [ ] Create custom arrow with css
+- [ ] Inside components There will be global and each screen. If a component owns another one, it will be nested. Folder structure will follow page structure
+
+- [ ] Change Switch player place to top
+- [ ] Calibrate font size
+- [ ] Add suspense to fetched data
+- [ ] Add error boundary
+- [ ] Enhance Error handling
 - [ ] Tab navigation
 - [ ] Hover and focus state
-- [ ] Enhance Error handling
 - [ ] Unit tests
 - [ ] E2E tests
 - [ ] Improve some CSS units that are not bound with the theme
-- [ ] Create custom select
-- [ ] Create custom arrow with css
 - [ ] When a Buy Offer is made, the offers total value is commited to the offer and deducted from the user’s inventory
 - [ ] When a Sell Offer is made, the offer’s bundle is commited to the offer and removed from the user’s inventory.
 - [ ] The offer’s total price cannot exceed the player’s gold, and if it does, there must be some kind of visual feedback and the user must not be able to create the offer.
 - [ ] The offer’s total price must be deducted from the player’s gold.
 - [ ] There must be some kind of visual feedback while the offer is being created.
+
+## File structure
+
+- The app folder is used mainly for routing
+- The view layer lives within the view folder. There I have screen that access ... and the components which can be global, or ...

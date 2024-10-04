@@ -3,7 +3,7 @@ import { Gloria_Hallelujah } from "next/font/google";
 import "@/View/styles/reset.css";
 import "@/View/styles/theme.css";
 import "@/View/styles/global.css";
-import { Frame } from "@/View/components/Frame";
+import { Frame } from "@/View/components/Global/Frame";
 
 export const metadata: Metadata = {
 	title: "CodeMiner Marketplace",
