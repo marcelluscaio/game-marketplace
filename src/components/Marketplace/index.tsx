@@ -1,15 +1,15 @@
-import buttonStyles from "@/View/components/Global/Button/styles.module.css";
+import buttonStyles from "@/components/Global/Button/styles.module.css";
 import styles from "./styles.module.css";
 import Link from "next/link";
-import { getPlayerData } from "@/server/actions/getPlayerData";
 import type { RouteProps } from "@/app/marketplace/[id]/page";
-import { Modal } from "@/View/components/Marketplace/Modal";
-import { createOffer } from "@/server/actions/createOffer";
-import { ItemList } from "@/View/components/Marketplace/ItemsList";
-import { Dashboard } from "@/View/components/Marketplace/Dashboard";
-import { OfferTables } from "@/View/components/Marketplace/OfferTables";
-import { getOffers } from "@/server/actions/getOffersByItem";
-import { Search } from "@/View/components/Marketplace/Search";
+import { Modal } from "@/components/Marketplace/Modal";
+import { ItemList } from "@/components/Marketplace/ItemsList";
+import { Dashboard } from "@/components/Marketplace/Dashboard";
+import { Search } from "@/components/Marketplace/Search";
+import { OfferTables } from "./OfferTables";
+import { getPlayerData } from "@/actions/getPlayerData";
+import { getOffers } from "@/actions/getOffersByItem";
+import { createOffer } from "@/actions/createOffer";
 
 type Props = RouteProps["params"];
 

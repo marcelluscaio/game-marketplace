@@ -1,4 +1,4 @@
-import { db } from "@/server/db/db";
+import { db } from "@/db/db";
 
 export async function getAllPlayers() {
 	const players = await db.player.findMany({

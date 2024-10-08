@@ -1,5 +1,5 @@
-import { db } from "@/server/db/db";
-import { Player } from "../schema/players";
+import { db } from "@/db/db";
+import { Player } from "../../schema/players";
 
 export async function getPlayerData(id: Player["id"]) {
 	//TODO implementar a mesma estrategia que na outra action, com discriminated union

@@ -1,4 +1,4 @@
-import { Marketplace } from "@/View/screens/Marketplace";
+import { Marketplace } from "@/components/Marketplace";
 
 type Props = {
 	params: {
@@ -6,7 +6,7 @@ type Props = {
 	};
 };
 
-export default async function MarketplaceRoute({ params: { id } }: Props) {
+export default async function Page({ params: { id } }: Props) {
 	return <Marketplace id={id} />;
 }
 

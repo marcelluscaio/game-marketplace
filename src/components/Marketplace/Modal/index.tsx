@@ -2,12 +2,12 @@
 import { useContext, useRef } from "react";
 import { Button } from "../../Global/Button";
 import styles from "./styles.module.css";
-import { OfferSchema, type Offer, type OfferForm } from "@/server/schema/offer";
-import { useForm } from "react-hook-form";
+import { OfferSchema, type Offer, type OfferForm } from "@/schema/offer";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { ActionReturn } from "@/server/actions/createOffer";
 import { DashboardContext } from "../Dashboard";
-import { Player } from "@/server/schema/players";
+import { Player } from "@/schema/players";
+import { ActionReturn } from "@/actions/createOffer";
 
 type FormData = OfferForm;
 type Props = {
@@ -39,23 +39,36 @@ function Modal({ formAction, playerGold }: Props) {
 		successDialog.current?.close();
 	}
 
-	const { register, handleSubmit, formState, watch } = useForm<FormData>({
+	const {
+		register,
+		handleSubmit,
+		formState: { errors, isSubmitting },
+		watch,
+		control,
+	} = useForm<FormData>({
 		mode: "onSubmit",
 		reValidateMode: "onChange",
-		defaultValues: { pricePerUnit: 0, quantity: 0 },
 		resolver: zodResolver(OfferSchema),
 	});
-	const { errors } = formState;
+	//TODO ver esse sandbox
+	//https://codesandbox.io/p/sandbox/dynamic-radio-example-forked-et0wi?file=%2Fsrc%2Fcontent%2FContent.tsx
+	// https://react-hook-form.com/docs/useformcontext
 
-	const total = watch(["pricePerUnit", "quantity"]).reduce((acc, current) => {
-		return (acc || 0) * (current || 0);
-	}, 1);
-	const offerType = watch("offerType");
+	//TODO Watch here is damaging performance (rerendering the whole formwhen these fields change)
+	const [pricePerUnit, quantity, offerType] = watch([
+		"pricePerUnit",
+		"quantity",
+		"offerType",
+	]);
+	console.log("rerender");
+	const total = (pricePerUnit || 0) * (quantity || 0);
+	const totalIsInvalid = total > playerGold && offerType === "BUY";
 
 	const onSubmit = async (formData: FormData) => {
 		if (selectedItem === undefined) {
 			return;
 		}
+		//TODO se total estiver no useForm nem chegamos aqui. Tentar
 		if (total > playerGold && offerType === "BUY") {
 			return;
 		}
@@ -101,37 +114,79 @@ function Modal({ formAction, playerGold }: Props) {
 						className={styles.form}
 						onSubmit={handleSubmit(onSubmit)}
 					>
-						<fieldset>
-							<div>
-								<label>Price Per Unit:</label>
-								<input
-									type="number"
-									{...register("pricePerUnit")}
-								/>
-							</div>
-							<p>{errors?.pricePerUnit?.message}</p>
-						</fieldset>
-						<fieldset>
-							<div>
-								<label>Amount:</label>
-								<input
-									type="number"
-									{...register("quantity")}
-								/>
-							</div>
-							<p>{errors?.quantity?.message}</p>
-						</fieldset>
-						<fieldset>
-							<div>
-								<label>Ends At:</label>
-								<input
-									type="date"
-									min={today()}
-									{...register("endDate")}
-								/>
-							</div>
-							<p>{errors?.endDate?.message}</p>
-						</fieldset>
+						{
+							//TODO try to use useController https://www.react-hook-form.com/api/usecontroller/
+						}
+						<Controller
+							control={control}
+							name="pricePerUnit"
+							render={({ field: { onChange, value } }) => (
+								<fieldset>
+									<div>
+										<label>Price Per Unit:</label>
+										<input
+											type="number"
+											placeholder="0"
+											value={value || 0}
+											onChange={(e) => {
+												const valueWithoutLeadingZeros = e.target.value.replace(
+													/^0+/,
+													""
+												);
+												onChange(valueWithoutLeadingZeros);
+											}}
+										/>
+									</div>
+									<p>{errors?.pricePerUnit?.message}</p>
+								</fieldset>
+							)}
+						/>
+						<Controller
+							control={control}
+							name="quantity"
+							render={({ field: { onChange, value }, fieldState: {} }) => {
+								console.log("Quantity rerendered");
+								return (
+									<fieldset>
+										<div>
+											<label>Amount:</label>
+											<input
+												type="number"
+												placeholder="0"
+												value={value || 0}
+												onChange={(e) => {
+													const valueWithoutLeadingZeros = e.target.value.replace(
+														/^0+/,
+														""
+													);
+													onChange(valueWithoutLeadingZeros);
+												}}
+											/>
+										</div>
+										<p>{errors?.quantity?.message}</p>
+									</fieldset>
+								);
+							}}
+						/>
+						<Controller
+							control={control}
+							name="endDate"
+							render={({ field: { onChange, value }, fieldState: { error } }) => (
+								<fieldset>
+									<div>
+										<label>Ends At:</label>
+										<input
+											type="date"
+											min={today()}
+											onChange={(e) => onChange(new Date(e.target.value))}
+											value={value ? formatDate(value) : ""}
+										/>
+
+										{error?.message && <p>{error?.message}</p>}
+									</div>
+								</fieldset>
+							)}
+						/>
 						<fieldset>
 							<div>
 								<legend>Offer Type:</legend>
@@ -163,11 +218,11 @@ function Modal({ formAction, playerGold }: Props) {
 								<span>Total Price </span>
 								<span>{total}</span>
 							</p>
-							<p className={styles.error}>
-								{total > playerGold &&
-									offerType === "BUY" &&
-									"Total price can't exceed player's total gold when buying"}
-							</p>
+							{totalIsInvalid && (
+								<p className={styles.error}>
+									{"Total price can't exceed player's total gold when buying"}
+								</p>
+							)}
 						</div>
 						<div className={styles.buttonContainer}>
 							<Button
@@ -195,6 +250,7 @@ function Modal({ formAction, playerGold }: Props) {
 				<div className={styles.successContainer}>
 					<p>Created successfully</p>
 					<Button
+						disabled={isSubmitting}
 						onClick={handleSuccessDialog}
 						text="Fechar"
 					/>
@@ -209,6 +265,7 @@ function today() {
 	return formatDate(date);
 }
 
+//TODO put in helpers or utils
 function formatDate(date: Date) {
 	const year = date.getFullYear();
 	const month = String(date.getMonth() + 1).padStart(2, "0");

@@ -8,7 +8,11 @@ const OfferSchema = z.object({
 		.min(1, { message: "Price should be a positive number" }),
 	quantity: z.coerce.number().min(1, { message: "Quantity should be a positive number" }),
 	offerType: z.enum(OFFER_TYPE, { message: "Choose one of the two options" }),
-	endDate: z.string().min(1, { message: "Date should be filled" }).date(),
+	endDate: z.date({
+		required_error: "Date is a mandatory field",
+		invalid_type_error: "Expected date and received another type",
+		message: "Something wrong happened",
+	}),
 });
 
 type OfferForm = z.infer<typeof OfferSchema>;

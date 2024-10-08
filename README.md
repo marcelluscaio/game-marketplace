@@ -58,7 +58,14 @@ On your terminal run
 
 ### Future
 
+- [ ] Project architecture
+  - [x] Delete View folder. Screens are components. There are components living inside of them. If they are shared, they are sent to the root of components (inside global folder)
+  - [ ] Schemas are my model (Prisma is also the model)
+  - [ ] Services - This one references the database and calls the database methods, applying business logic. This avoids creating things on the database that break business logic
+  - [ ] Controllers (Actions) - This one gets data from a request, and calls a service. It also deals with the response and sends to the client. In the controller the type is unknown (because we never know what is coming from a request, right? So we need to make the assertions)
+- [ ] Organize imports
 - [ ] Add mask to input to avoid '01'
+- [ ] Just add the error markup if there is error
 - [ ] Integration between React hook form and buy/sell form
 - [ ] Gold update when setting buy
 - [ ] Create custom select
@@ -84,4 +91,4 @@ On your terminal run
 ## File structure
 
 - The app folder is used mainly for routing
-- The view layer lives within the view folder. There I have screen that access ... and the components which can be global, or ...
+- ....

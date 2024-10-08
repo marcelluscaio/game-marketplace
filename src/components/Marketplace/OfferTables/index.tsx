@@ -2,8 +2,8 @@
 import { useContext, useEffect, useState } from "react";
 import { DashboardContext } from "../Dashboard";
 import styles from "./styles.module.css";
-import type { OfferFromDb } from "@/server/schema/offer";
-import type { Item } from "@/server/schema/items";
+import type { OfferFromDb } from "@/schema/offer";
+import type { Item } from "@/schema/items";
 import { formatDate } from "../Modal";
 
 type Props = {

@@ -1,5 +1,5 @@
-import { db } from "@/server/db/db";
-import { Item } from "../schema/items";
+import { db } from "@/db/db";
+import { Item } from "../../schema/items";
 
 export async function getOffers(id: Item["itemTypeId"]) {
 	"use server";

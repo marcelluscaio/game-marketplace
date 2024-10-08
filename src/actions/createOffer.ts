@@ -1,5 +1,5 @@
-import { db } from "@/server/db/db";
-import { type Offer, OfferSchema } from "../schema/offer";
+import { db } from "@/db/db";
+import { type Offer /* OfferSchema */ } from "../../schema/offer";
 import { decreasePlayerGold } from "./decreasePlayerGold";
 
 type Success = { status: "success"; offer: Offer };
@@ -9,12 +9,12 @@ type ActionReturn = Success | Error;
 async function createOffer(offerData: Offer): Promise<ActionReturn> {
 	"use server";
 	try {
-		const validatedData = OfferSchema.safeParse(offerData);
+		// const validatedData = OfferSchema.safeParse(offerData);
 		//TODO provide better validation and error message
 		const totalValidation =
 			offerData.totalPrice === offerData.quantity * offerData.pricePerUnit;
 
-		if (validatedData.success && totalValidation) {
+		if (/* validatedData.success &&  */ totalValidation) {
 			const offer = await db.offer.create({
 				data: offerData,
 			});
@@ -29,7 +29,7 @@ async function createOffer(offerData: Offer): Promise<ActionReturn> {
 			}
 			return { status: "success", offer };
 		} else {
-			throw new Error("Invalid data", validatedData.error);
+			throw new Error("Invalid data" /* validatedData.error */);
 		}
 	} catch (error) {
 		console.log(error);

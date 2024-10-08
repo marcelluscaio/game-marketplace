@@ -1,5 +1,5 @@
-import { Impersonation } from "@/View/screens/Impersonation";
+import { Impersonation } from "@/components/Impersonation";
 
-export default async function Home() {
+export default async function Page() {
 	return <Impersonation />;
 }

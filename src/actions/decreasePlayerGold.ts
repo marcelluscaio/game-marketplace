@@ -1,5 +1,5 @@
-import { db } from "@/server/db/db";
-import { Player } from "../schema/players";
+import { db } from "@/db/db";
+import { Player } from "../../schema/players";
 
 export async function decreasePlayerGold({ id, gold }: Pick<Player, "id" | "gold">) {
 	"use server";

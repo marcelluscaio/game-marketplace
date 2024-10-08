@@ -1,7 +1,7 @@
+import { getAllPlayers } from "@/actions/getAllPlayers";
 import styles from "./styles.module.css";
-import { ImpersonationForm } from "@/View/components/ImpersonationForm";
-import { getAllPlayers } from "@/server/actions/getAllPlayers";
-import { login } from "@/server/actions/login";
+import { ImpersonationForm } from "@/components/Impersonation/ImpersonationForm";
+import { login } from "@/actions/login";
 
 async function Impersonation() {
 	const players = await getAllPlayers();

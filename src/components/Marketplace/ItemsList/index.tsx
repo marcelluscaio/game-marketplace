@@ -1,5 +1,5 @@
 "use client";
-import { Items } from "@/server/schema/items";
+import { Items } from "@/schema/items";
 import styles from "./styles.module.css";
 import { useContext, useEffect } from "react";
 import { DashboardContext } from "../Dashboard";

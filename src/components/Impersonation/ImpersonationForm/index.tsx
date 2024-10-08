@@ -1,8 +1,8 @@
 "use client";
 import { FormEvent, useState } from "react";
-import { Player, Players } from "@/server/schema/players";
+import { Player, Players } from "@/schema/players";
 import styles from "./styles.module.css";
-import { Button } from "@/View/components/Global/Button";
+import { Button } from "@/components/Global/Button";
 
 type FormData = Player["id"];
 type Props = {
